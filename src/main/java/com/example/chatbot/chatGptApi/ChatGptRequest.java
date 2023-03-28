@@ -1,7 +1,5 @@
-package com.example.chatbot.chatGptController;
+package com.example.chatbot.chatGptApi;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data

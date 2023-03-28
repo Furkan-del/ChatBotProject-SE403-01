@@ -1,4 +1,4 @@
-package com.example.chatbot.chatGptController;
+package com.example.chatbot.chatGptApi;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
