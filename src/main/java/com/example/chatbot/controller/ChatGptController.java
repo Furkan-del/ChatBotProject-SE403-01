@@ -1,8 +1,8 @@
-package com.example.chatbot.chatGptController;
+package com.example.chatbot.controller;
 
+import com.example.chatbot.chatGptApi.ChatGptRequest;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonObject;
 import org.springframework.http.*;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class ChatGptController {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + API_KEY);
         headers.setContentType(MediaType.APPLICATION_JSON);
-        ChatGptRequest request = new ChatGptRequest(prompt);
+        ChatGptRequest request = new ChatGptRequest("Classify the sentiment in this comment"+prompt);
         HttpEntity<ChatGptRequest> requestHttpEntity = new HttpEntity<>(request, headers);
         ResponseEntity<String> responseEntity = restTemplate.exchange(API_URL, HttpMethod.POST, requestHttpEntity, String.class);
         String responseData = responseEntity.getBody();
