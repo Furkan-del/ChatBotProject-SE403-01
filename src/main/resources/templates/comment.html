@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:fragment="head">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -395,7 +395,7 @@
       <ul class="nav navbar-nav">
         <label><a href="#usernameInfo">Username</a></label>
         <label><a href="#contact">Contact Admins</a></label>
-        <label class="btn" for="modal-1"><a>Comment Inspector</a></label>
+       <!-- <label class="btn" for="modal-1"><a>Comment Inspector</a></label>-->
         <label style="font-size:18px; position:absolute; right:0"><a id="getCurrentDate"></a></label>
       </ul>
     </div>
@@ -425,33 +425,24 @@
     <div id="posts-list" >
       <div>
         <div id="comment_1" style="background: #ececec">
+          <div  style="padding: 10px;" th:each="comment : ${commentsAll}">
+            <div>
+              <p th:text="${comment.comment}">This is a sample comment</p>
+              <p th:text="${comment.commentType} " ></p>
 
 
+            </div>
+            <div style="display: flex;" >
+              <p  style="margin-right: 5px;">
+                By <a th:text="${comment.userName}" class="url fn" href="#">Çağıl Erser</a>
+              </p>
+              <p th:text="${comment.dates}">
+              </p>
+            </div>
 
-          <table>
-            <tbody>
-            <tr th:each="comment : ${comments}">
-              <td style="text-align: left; padding: 5px 10px;"><a class="url fn" href="#" th:text="${comment.name}">Cigilipuf Çağıl Cengiz Erser</a></td>
+            <a class="button-comment"  th:href="@{comments/delete/{id} (id=${comment.getId()})}">Delete</a>
+           </div>
 
-            </tr>
-            <tr th:each="comment : ${comments}">
-              <td style="padding: 10px;" th:text="${comment.comment}">This is a real nice comment</td>
-            </tr>
-            <tr>
-              <td style="padding: 10px;color: lawngreen " th:text="${comment.chatbotResponse}">Positive</td>
-            </tr>
-
-            <tr>
-              <td style="text-align: left; padding: 5px 10px;" th:text="comment.date">26 March 2023</td>
-            </tr>
-            <tr>
-              <td>
-                <button th:href="@{students/edit/{id} (id=${user.id})}" class="button-comment" style="">Update</button>
-                <button th:href="@{students/delete/{id} (id=${user.id})}" class="button-comment">Delete</button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
 
 
 
@@ -462,9 +453,11 @@
     </div>
     <div id="respond">
       <h3>Leave a Comment</h3>
-      <form method="post" id="commentform">
+      <form method="post" id="commentform" th:action="@{/comments}" th:object="${commentsAll}" >
         <label for="comment" class="required" style="margin-bottom: 15px">Your message</label>
-        <textarea name="comment" id="comment" rows="10" required="required"></textarea>
+        <input  id="comment" name="comment"  rows="10" required="required">
+        <!--<input type="hidden"  name="userId" value="1">
+        <input type="hidden" name="userName" value="Furkan Yaman">-->
         <button class="button">Submit Comment</button>
       </form>
     </div>
@@ -483,20 +476,20 @@
     </div>
   </footer>
 
-  <input class="modal-state" id="modal-1" type="checkbox" />
-  <div class="modal">
+  <!--<div class="modal">
     <label class="modal__bg" for="modal-1"></label>
+    <input class="modal-state" id="modal-1" type="checkbox" />
     <div class="modal__inner">
       <label class="modal__close" for="modal-1"></label>
-      <form   th:action="@{/}" method="post"  >
+  &lt;!&ndash;    <form   th:action="@{/}" method="post"  >
         <h2>Enter Your Comment For Inspection</h2>
         <input type="text" name="prompt"  />
         <button class="button" style=""  type="submit">Submit</button>
-        <p  th:text="${responseData}"></p>
+        <p  th:text="${}"></p>
       </form >
+&ndash;&gt;
+    </div>-->
 
-    </div>
-  </div>
 
 </div>
 <script src="js/jquery-1.10.2.js"></script>

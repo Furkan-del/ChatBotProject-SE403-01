@@ -22,6 +22,6 @@ public class User {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name="phonenumber")
+    @Column(name="phoneNumber")
     private Integer phoneNumber;
 }
