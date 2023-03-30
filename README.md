@@ -18,3 +18,8 @@ In conclusion, it's important to remember that chatbots can have both positive a
 # How to connecting an API research
 
 https://platform.openai.com/docs/models/overview Chat with Chatgpt for API connections.
+
+# Using AI in Chatbots
+https://www.ibm.com/topics/chatbots#:~:text=A%20chatbot%20is%20a%20computer,to%20them%2C%20simulating%20human%20conversation.
+My Researches based on IBM
+role of NLP
