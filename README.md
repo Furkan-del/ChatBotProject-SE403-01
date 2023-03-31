@@ -24,4 +24,5 @@ https://www.ibm.com/topics/chatbots#:~:text=A%20chatbot%20is%20a%20computer,to%2
 My Researches based on IBM
 role of NLP
 
-sdasd
+# Database Tables and Diagram (PNG)
+https://drive.google.com/drive/folders/1I4lSwprkFKOWQzoVoUTnYxMD1GHqXJ1R?usp=share_link
