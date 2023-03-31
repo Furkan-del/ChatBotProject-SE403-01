@@ -23,3 +23,5 @@ https://platform.openai.com/docs/models/overview Chat with Chatgpt for API conne
 https://www.ibm.com/topics/chatbots#:~:text=A%20chatbot%20is%20a%20computer,to%20them%2C%20simulating%20human%20conversation.
 My Researches based on IBM
 role of NLP
+
+sdasd
