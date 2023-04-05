@@ -19,8 +19,7 @@ import org.springframework.web.client.RestTemplate;
 @Data
 public class ChatGptServiceImpl implements ChatGptService {
 
-
-    private final String API_KEY = "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";
+    private final String API_KEY = "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";
     private final String API_URL = "https://api.openai.com/v1/completions";
 
     @Override
