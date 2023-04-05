@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>OpinionMate News</title>
+    <style>
+    footer{
+      margin:50px 0
+    }
+    *,:after,:before{
+      -webkit-box-sizing:border-box;
+      -moz-box-sizing:border-box;
+      box-sizing:border-box
+    }
+    a{
+      color:#428bca;
+      text-decoration:none
+    }
+    a:focus,a:hover{
+      color:#2a6496;
+      text-decoration:underline
+    }
+    .img-responsive{
+      display:block;
+      height:auto;
+      max-width:100%
+    }
+    hr{
+      margin-top:20px;
+      margin-bottom:20px;
+      border:0;
+      border-top:1px solid grey
+    }
+    .text-center{
+      text-align:center
+    }
+    .h3,h3{
+      font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-weight:500;
+      line-height:1.1;
+      color:inherit
+    }
+    .page-header{
+      padding-bottom:9px;
+      margin:40px 0 20px;
+      border-bottom:1px solid grey
+    }
+    .container{
+      padding-right:15px;
+      padding-left:15px;
+      margin-right:auto;
+      margin-left:auto
+    }
+
+    .row:after,.row:before{
+      display:table;
+      content:" "
+    }
+    .col-md-4{
+      position:relative;
+      min-height:1px;
+      padding-right:15px;
+      padding-left:15px
+    }
+    @media (min-width:992px){
+      .container{
+        width:970px
+      }
+      .col-md-4{
+        float:left
+      }
+      .col-md-4{
+        width:33%
+      }
+    }
+    @media (min-width:1200px){
+      .container{
+        width:1170px
+      }
+    }
+
+
+    .nav{
+      padding-left:0;
+      margin-bottom:0;
+      list-style:none
+    }
+
+    .nav>label{
+      position:relative;
+      display:block
+    }
+    .nav>label>a{
+      position:relative;
+      display:block;
+      padding:10px 15px
+    }
+    .nav>label>a:focus,.nav>label>a:hover{
+      text-decoration:none;
+      background-color:#eee
+    }
+
+    .navbar{
+      position:relative;
+      min-height:50px;
+      margin-bottom:20px;
+      border:1px solid transparent
+    }
+
+    @media (min-width:768px){
+      .navbar-header{
+        float:left
+      }
+    }
+    .navbar-collapse{
+      max-height:340px;
+      padding-right:15px;
+      padding-left:15px;
+      overflow-x:visible;
+      border-top:1px solid transparent;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
+      -webkit-overflow-scrolling:touch
+    }
+    .navbar-collapse:after,.navbar-collapse:before{
+      display:table;
+      content:" "
+    }
+    .navbar-collapse:after{
+      clear:both
+    }
+    .navbar-collapse:after,.navbar-collapse:before{
+      display:table;
+      content:" "
+    }
+    .navbar-collapse:after{
+      clear:both
+    }
+    @media (min-width:768px){
+      .navbar-collapse.collapse{
+        display:block!important;
+        height:auto!important;
+        padding-bottom:0;
+        overflow:visible!important
+      }
+
+    }
+    .navbar-fixed-top{
+      position:fixed;
+      right:0;
+      left:0;
+      z-index:1030
+    }
+    @media (min-width:768px){
+      .navbar-fixed-top{
+        border-radius:0
+      }
+    }
+    .navbar-fixed-top{
+      top:0;
+      border-width:0 0 1px
+    }
+    .navbar-brand{
+      float:left;
+      padding:15px 15px;
+      font-size:18px;
+      line-height:20px
+    }
+
+    @media (min-width:768px){
+      .navbar-toggle{
+        display:none
+      }
+    }
+
+    @media (min-width:768px){
+      .navbar-nav{
+        float:left;
+        margin:0
+      }
+      .navbar-nav>label{
+        float:left
+      }
+      .navbar-nav>label>a{
+        padding-top:15px;
+        padding-bottom:15px
+      }
+    }
+    .navbar-text{
+      float:left;
+      margin-top:15px;
+      margin-bottom:15px
+    }
+
+    .navbar-inverse{
+      background-color:#222;
+      border-color:#080808
+    }
+    .navbar-inverse .navbar-brand{
+      color:#999
+    }
+    .navbar-inverse .navbar-brand:focus,.navbar-inverse .navbar-brand:hover{
+      color:#fff;
+      background-color:transparent
+    }
+    .navbar-inverse .navbar-text{
+      color:#999
+    }
+    .navbar-inverse .navbar-nav>label>a{
+      color:#999
+    }
+    .navbar-inverse .navbar-nav>label>a:focus,.navbar-inverse .navbar-nav>label>a:hover{
+      color:#fff;
+      background-color:transparent
+    }
+
+
+
+    /* [Object] Modal
+     * =============================== */
+    .modal {
+      opacity: 0;
+      visibility: hidden;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      text-align: center;
+      background: rgba(0,0,0, .9);
+      transition: opacity .25s ease;
+    }
+
+    .modal-state {
+      display: none;
+    }
+
+    .modal-state:checked + .modal {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal__inner {
+      transition: top .25s ease;
+      position: absolute;
+      top: -20%;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 50%;
+      margin: auto;
+      overflow: auto;
+      background: #fff;
+      border-radius: 5px;
+      padding: 1em 2em;
+      height: 32%;
+    }
+    .modal__close {
+      position: absolute;
+      right: 1em;
+      top: 1em;
+      width: 1.1em;
+      height: 1.1em;
+      cursor: pointer;
+    }
+    .modal__close:after,
+    .modal__close:before {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 1.5em;
+      background: #ccc;
+      display: block;
+      transform: rotate(45deg);
+      left: 50%;
+      margin: -3px 0 0 -1px;
+      top: 0;
+    }
+    .modal__close:hover:after,
+    .modal__close:hover:before {
+      background: #aaa;
+    }
+    .modal__close:before {
+      transform: rotate(-45deg);
+    }
+    /* Other
+     * =============================== */
+    .btn {
+      cursor: pointer;
+      display: inline-block;
+    }
+    input{
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+    }
+    #comments{
+      background:#fff;
+      margin-bottom:35px;
+      overflow:hidden;
+      width:760px;
+    }
+    #comments label{
+      display:block
+    }
+    #comments label:after{
+      content:"*"
+    }
+    #respond{
+      margin-top:50px
+    }
+    #respond input[type=text],#respond textarea{
+      margin-bottom:10px;
+      display:block;
+      width:100%;
+      border:1px solid rgba(0,0,0,.1);
+      -webkit-border-radius:5px;
+      -moz-border-radius:5px;
+      -o-border-radius:5px;
+      -ms-border-radius:5px;
+      -khtml-border-radius:5px;
+      border-radius:5px;
+      line-height:1.4em
+    }
+
+    .col-md-4{
+      position:relative;
+      min-height:1px;
+      padding-right:15px;
+      padding-left:15px
+    }
+    @media (min-width:992px){
+      .container{
+        width:970px
+      }
+      .col-md-4{
+        float:left
+      }
+      .col-md-4{
+        width:33%
+      }
+    }
+    @media (min-width:1200px){
+      .container{
+        width:1170px
+      }
+    }
+    .button {
+      border: none;
+      color: white;
+      padding: 11px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      transition-duration: 0.6s;
+      cursor: pointer;
+      background-color: white;
+      color: black;
+      border: 2px solid #555555;
+      width:100%;
+    }
+    .button:hover {
+      background-color: #555555;
+      color: white;
+    }
+    .button-comment{
+      margin: 10px;
+      text-align: center;
+      display: inline-block;
+      font-size: 14px;
+      transition-duration: 0.6s;
+      cursor: pointer;
+      background-color: white;
+      color: black;
+      border: 2px solid #555555;
+      width: 150px;
+    }
+    .button-comment:hover{
+      background-color: #555555;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <a style="font-size:25px;" th:href="@{/}" class="navbar-brand">OpinionMate</a>
+        </div>
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <label><a href="#usernameInfo">Username</a></label>
+                <label><a href="#contact">Contact Admins</a></label>
+                <!-- <label class="btn" for="modal-1"><a>Comment Inspector</a></label>-->
+                <label style="font-size:18px; position:absolute; right:0"><a id="getCurrentDate"></a></label>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container" style="margin-top:25px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">OpinionMate: <small>The new era of stating your opinions</small></h1>
+        </div>
+
+    </div>
+
+    <div class="col-md-4 portfolio-item">
+        <a href="#project-link"><img class="img-responsive" src="/static/chatbot.png"></a>
+        <h3><a href="#project-link">ChatGPT started a new kind of AI race and made text boxes cool again</a></h3>
+        <p>Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest innovation?</p>
+    </div>
+
+
+    <section id="comments" >
+
+        <header>
+            <h2>Comments & Reactions</h2>
+        </header>
+        <div id="posts-list" >
+            <div>
+                <div id="comment_1" style="background: #ececec">
+                    <div  style="padding: 10px;" th:each="comment : ${commentsAll}">
+                        <div>
+                            <p th:text="${comment.comment}">This is a sample comment</p>
+                            <p th:text="${comment.commentType} " ></p>
+
+
+                        </div>
+                        <div style="display: flex;" >
+                            <p  style="margin-right: 5px;">
+                                By <a th:text="${comment.userName}" class="url fn" href="#">Çağıl Erser</a>
+                            </p>
+                            <p th:text="${comment.dates}">
+                            </p>
+                        </div>
+
+                        <a class="button-comment"  th:href="@{comments/delete/{id} (id=${comment.getId()})}">Delete</a>
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <div id="respond">
+            <h3>Leave a Comment</h3>
+            <form method="post" id="commentform" th:action="@{/comments}" th:object="${commentsAll}" >
+                <label for="comment" class="required" style="margin-bottom: 15px">Your message</label>
+                <input  id="comment" name="comment"  rows="10" required="required">
+                <!--<input type="hidden"  name="userId" value="1">
+                <input type="hidden" name="userName" value="Furkan Yaman">-->
+                <button class="button">Submit Comment</button>
+            </form>
+        </div>
+    </section>
+
+</div>
+
+<div class="container">
+    <hr>
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; OpinionMate <span id="getCurrentYear"></span></p>
+
+            </div>
+        </div>
+    </footer>
+
+    <!--<div class="modal">
+      <label class="modal__bg" for="modal-1"></label>
+      <input class="modal-state" id="modal-1" type="checkbox" />
+      <div class="modal__inner">
+        <label class="modal__close" for="modal-1"></label>
+    &lt;!&ndash;    <form   th:action="@{/}" method="post"  >
+          <h2>Enter Your Comment For Inspection</h2>
+          <input type="text" name="prompt"  />
+          <button class="button" style=""  type="submit">Submit</button>
+          <p  th:text="${}"></p>
+        </form >
+  &ndash;&gt;
+      </div>-->
+
+
+</div>
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/bootstrap.js"></script>
+<script type="text/javascript">
+  const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  var dt = new Date();
+  document.getElementById('getCurrentYear').innerHTML = dt.getFullYear();
+  var date = dt.getDate() + "/" + dt.getMonth() + "/" + dt.getFullYear() + " " + weekdays[dt.getDay()];
+  document.getElementById('getCurrentDate').innerHTML = date;
+  document.getElementById('commentDat').innerHTML = date;
+</script>
+</body>
+
+</html>
