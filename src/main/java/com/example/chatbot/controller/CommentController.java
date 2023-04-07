@@ -2,7 +2,9 @@ package com.example.chatbot.controller;
 
 import com.example.chatbot.business.concrete.ChatGptServiceImpl;
 import com.example.chatbot.business.concrete.CommentServiceImpl;
+import com.example.chatbot.business.concrete.UserServiceImpl;
 import com.example.chatbot.entity.Comment;
+
 import com.example.chatbot.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 @Data
@@ -22,9 +23,11 @@ public class CommentController {
     private final CommentServiceImpl commentService;
     private final ChatGptServiceImpl chatGptService;
 
-    @GetMapping("/comments")
+
+    @GetMapping("mainPage/comments")
     public String getAllComments(Model model) {
         model.addAttribute("commentsAll", commentService.getAllComments());
+
         return "comment";
     }
 
@@ -37,14 +40,11 @@ public class CommentController {
         comment.setDates(df.format(currentDate));
         String answer=chatGptService.generateText(comments);
         comment.setCommentType(answer);
-
        /* comment.setUserId(1L);*/
         commentService.add(comment);
-
-
-        return "redirect:/comments";
+        return "redirect:/mainPage/comments";
     }
-    @GetMapping("comments/delete/{id}")
+    @GetMapping("mainPage/comments/delete/{id}")
     public  String delete(@PathVariable Long id){
         Comment comment=commentService.getCommentById(id);
         commentService.delete(comment);

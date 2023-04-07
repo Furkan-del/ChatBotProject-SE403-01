@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- Created By CodingNepal -->
-<html lang="en" dir="ltr">
+
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>OpinionMate News</title>
@@ -9,17 +9,17 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap%27');
         {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
         html,body{
-        display: grid;
-        height: 100%;
-        width: 100%;
-        place-items: center;
-        background: -webkit-linear-gradient(bottom, gray, white);
+            display: grid;
+            height: 100%;
+            width: 100%;
+            place-items: center;
+            background: -webkit-linear-gradient(bottom, gray, white);
         }
 
         .wrapper{
@@ -41,63 +41,12 @@
             text-align: center;
             transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
         }
-        .wrapper .slide-controls{
-            position: relative;
-            display: flex;
-            height: 50px;
-            width: 95%;
-            overflow: hidden;
-            margin: 30px 0 10px 10px;
-            justify-content: space-between;
-            border: 1px solid lightgrey;
-            border-radius: 5px;
-        }
-        .slide-controls .slide{
-            height: 100%;
-            width: 100%;
-            color: #fff;
-            font-size: 18px;
-            font-weight: 500;
-            text-align: center;
-            line-height: 48px;
-            cursor: pointer;
-            z-index: 1;
-            transition: all 0.6s ease;
-        }
-        .slide-controls label.signup{
-            color: #000;
-        }
-        .slide-controls .slider-tab{
-            position: absolute;
-            height: 100%;
-            width: 50%;
-            left: 0;
-            z-index: 0;
-            border-radius: 5px;
-            background:grey;
-            transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
-        }
+
+
         input[type="radio"]{
             display: none;
         }
-        #signup:checked ~ .slider-tab{
-            left: 50%;
-        }
-        #signup:checked ~ label.signup{
-            color: #fff;
-            cursor: default;
-            user-select: none;
-        }
-        #signup:checked ~ label.login{
-            color: #000;
-        }
-        #login:checked ~ label.signup{
-            color: #000;
-        }
-        #login:checked ~ label.login{
-            cursor: default;
-            user-select: none;
-        }
+
         .wrapper .form-container{
             width: 100%;
             overflow: hidden;
@@ -117,7 +66,7 @@
         }
         .form-inner form .field input{
             height: 100%;
-            width: 95%;
+            width: 93%;
             outline: none;
             padding-left: 15px;
             border-radius: 5px;
@@ -132,7 +81,7 @@
             transition: all 0.3s ease;
         }
         form .field input:focus::placeholder{
-            color: #b3b3b3;
+            color: black;
         }
         .form-inner form .pass-link{
             margin-top: 5px;
@@ -191,25 +140,15 @@
         <div class="title login">
             OpinionMate Login
         </div>
-        <div class="title signup">
-            OpinionMate Signup
-        </div>
     </div>
     <div class="form-container">
-        <div class="slide-controls">
-            <input type="radio" name="slide" id="login" checked>
-            <input type="radio" name="slide" id="signup">
-            <label for="login" class="slide login">Login</label>
-            <label for="signup" class="slide signup">Signup</label>
-            <div class="slider-tab"></div>
-        </div>
         <div class="form-inner">
-            <form method="post" action="#" class="login">
+            <form method="post" th:action="@{/login}" class="login">
                 <div class="field">
-                    <input type="text" placeholder="Username" required>
+                    <input type="text"  name="username" placeholder="Username" required>
                 </div>
                 <div class="field">
-                    <input type="password" placeholder="Password" required>
+                    <input type="password" name="password" placeholder="Password" required>
                 </div>
                 <div class="pass-link">
                     <a href="#">Forgot password?</a>
@@ -219,48 +158,11 @@
                     <input type="submit" value="Login">
                 </div>
                 <div class="signup-link">
-                    Not a member? <a href="">Signup now</a>
-                </div>
-            </form>
-            <form method="post" action="#" class="signup">
-                <div class="field">
-                    <input type="text" placeholder="Email Address" required>
-                </div>
-                <div class="field">
-                    <input type="text" placeholder="Username" required>
-                </div>
-                <div class="field">
-                    <input type="password" placeholder="Password" required>
-                </div>
-                <div class="field">
-                    <input type="password" placeholder="Confirm password" required>
-                </div>
-                <div class="field btn">
-                    <div class="btn-layer"></div>
-                    <input type="submit" value="Signup">
+                    Not a member? <a th:href="@{/register}">Signup now</a>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<script>
-    const loginText = document.querySelector(".title-text .login");
-    const loginForm = document.querySelector("form.login");
-    const loginBtn = document.querySelector("label.login");
-    const signupBtn = document.querySelector("label.signup");
-    const signupLink = document.querySelector("form .signup-link a");
-    signupBtn.onclick = (()=>{
-        loginForm.style.marginLeft = "-50%";
-        loginText.style.marginLeft = "-50%";
-    });
-    loginBtn.onclick = (()=>{
-        loginForm.style.marginLeft = "0%";
-        loginText.style.marginLeft = "0%";
-    });
-    signupLink.onclick = (()=>{
-        signupBtn.click();
-        return false;
-    });
-</script>
 </body>
 </html>
