@@ -11,7 +11,6 @@ import java.util.List;
 @Table(name = "admins")
 @Data
 @AllArgsConstructor
-@RequiredArgsConstructor
 @NoArgsConstructor
 public class Admin {
     @Id

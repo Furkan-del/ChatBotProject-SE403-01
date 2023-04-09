@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.*;
 public class RegistrationController {
     private UserServiceImpl userService;
 
-    @GetMapping("/login")
+    @GetMapping("/")
     public String showLoginForm(){
         return "login";
     }
 
-     @PostMapping("/login")
+     @PostMapping("/")
      public String processLogin(@RequestParam(value = "username",required = false)String username,@RequestParam(value = "password",required = false)String password){
         User user=new User();
         user.setUserName(username);
@@ -32,7 +32,7 @@ public class RegistrationController {
          else if (user.getUserName().equals("admin")&&user.getPassword().equals("12345")) {
              return  "redirect:/admin";
          } else{
-             return "redirect:/login";
+             return "redirect:/";
          }
      }
 
@@ -57,7 +57,7 @@ public class RegistrationController {
         }
 
         userService.saveUser(user);
-        return "redirect:/login";
+        return "redirect:/";
     }
 
 
