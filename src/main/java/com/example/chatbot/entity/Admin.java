@@ -2,6 +2,7 @@ package com.example.chatbot.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @Table(name = "admins")
 @Data
 @AllArgsConstructor
+@RequiredArgsConstructor
 @NoArgsConstructor
 public class Admin {
     @Id

@@ -2,10 +2,10 @@ package com.example.chatbot.controller;
 
 import com.example.chatbot.business.concrete.ChatGptServiceImpl;
 import com.example.chatbot.business.concrete.CommentServiceImpl;
-import com.example.chatbot.business.concrete.UserServiceImpl;
+
 import com.example.chatbot.entity.Comment;
 
-import com.example.chatbot.entity.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
@@ -27,9 +27,10 @@ public class CommentController {
     @GetMapping("mainPage/comments")
     public String getAllComments(Model model) {
         model.addAttribute("commentsAll", commentService.getAllComments());
-
         return "comment";
     }
+
+
 
     @PostMapping("/comments")
     public String postComment(@ModelAttribute("commentsAll") Comment comment, @RequestParam("comment") String comments,Model model) {
@@ -44,6 +45,7 @@ public class CommentController {
         commentService.add(comment);
         return "redirect:/mainPage/comments";
     }
+
     @GetMapping("mainPage/comments/delete/{id}")
     public  String delete(@PathVariable Long id){
         Comment comment=commentService.getCommentById(id);

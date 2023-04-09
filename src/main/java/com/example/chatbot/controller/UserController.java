@@ -1,3 +1,4 @@
+/*
 package com.example.chatbot.controller;
 
 import com.example.chatbot.business.concrete.UserServiceImpl;
@@ -24,18 +25,22 @@ public class UserController {
     private UserServiceImpl userService;
 
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    @GetMapping("/register")
+  */
+/*  @GetMapping("/register")
     public String showRegisterPage(Model model) {
         model.addAttribute("user", new User());
         return "register";
     }
-
+*//*
+*/
+/*
     @PostMapping("/register")
     public String saveRegisterPage(@ModelAttribute("user")User user) {
         bCryptPasswordEncoder.encode(user.getPassword());
         userService.saveUser(user);
         return "redirect:/login";
-    }
+    }*//*
+
 
     @GetMapping("/login")
     public String showLoginForm(){
@@ -48,11 +53,14 @@ public class UserController {
         if(user !=null && user.getPassword().equals(password)){
             return "indexes";
         }
-       /* else if(user !=null && user.getUserName().equals("admin") && user.getPassword().equals("12345")){
+       */
+/* else if(user !=null && user.getUserName().equals("admin") && user.getPassword().equals("12345")){
             return "admin_page";
         }
-       */ else{
+       *//*
+ else{
             return "login";
         }
     }
 }
+*/
