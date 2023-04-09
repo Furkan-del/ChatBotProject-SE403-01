@@ -389,7 +389,7 @@
 <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <a style="font-size:25px;" th:href="@{/}" class="navbar-brand">OpinionMate</a>
+      <a style="font-size:25px;" th:href="@{/mainPage}" class="navbar-brand">OpinionMate</a>
     </div>
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
@@ -439,21 +439,14 @@
               <p th:text="${comment.dates}">
               </p>
             </div>
-
-            <a class="button-comment"  th:href="@{comments/delete/{id} (id=${comment.getId()})}">Delete</a>
+            <a class="button-comment"  th:href="@{mainPage/comments/delete/{id} (id=${comment.getId()})}">Delete</a>
            </div>
-
-
-
-
-
-
         </div>
       </div>
     </div>
     <div id="respond">
       <h3>Leave a Comment</h3>
-      <form method="post" id="commentform" th:action="@{/comments}" th:object="${commentsAll}" >
+      <form method="post" id="commentform" th:action="@{/comments}" th:object="${commentsAll}">
         <label for="comment" class="required" style="margin-bottom: 15px">Your message</label>
         <input  id="comment" name="comment"  rows="10" required="required">
         <!--<input type="hidden"  name="userId" value="1">

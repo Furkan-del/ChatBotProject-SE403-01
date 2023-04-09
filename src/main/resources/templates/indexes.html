@@ -355,7 +355,7 @@ input{
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
-            <label><a href="#usernameInfo">Username</a></label>
+            <label><a href="#usernameInfo"  >Username</a></label>
             <label><a href="#contact">Contact Admins</a></label>
             <label class ="btn" for="modal-1"><a>Comment Inspector</a></label>
             <label style="font-size:18px; position:absolute; right:0"><a id="getCurrentDate"></a></label>
@@ -376,7 +376,7 @@ input{
 
         <div class="col-md-4 portfolio-item">
           <a href="#project-link"><img class="img-responsive" src="/static/chatbot.png"></a>
-          <h3><a th:href="@{/comments}">ChatGPT started a new kind of AI race and made text boxes cool again</a></h3>
+          <h3><a th:href="@{mainPage/comments}">ChatGPT started a new kind of AI race and made text boxes cool again</a></h3>
           <p>Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest innovation?</p>
         </div>
 
@@ -422,7 +422,7 @@ input{
     <label class="modal__bg" for="modal-1"></label>
     <div class="modal__inner">
       <label class="modal__close" for="modal-1"></label>
-      <form   th:action="@{/}" method="post">
+      <form   th:action="@{/mainPage}" method="post">
         <h2>Enter Your Comment For Inspection</h2>
         <input type="text" name="prompt"  />
         <button class="button" style=""  type="submit">Submit</button>

@@ -106,13 +106,28 @@
             <version>4.5.2</version>
         </dependency>
         <dependency>
+
+
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
             <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
 
-
+        <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
         </dependency>
 
+
+       <!-- <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>5.7.5</version>
+        </dependency>
+-->
 
     </dependencies>
 
