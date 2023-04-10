@@ -393,7 +393,7 @@
     </div>
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <label><a href="#usernameInfo">Username</a></label>
+        <label><a href="#usernameInfo" th:text="${session.username}">Username</a></label>
         <label><a href="#contact">Contact Admins</a></label>
        <!-- <label class="btn" for="modal-1"><a>Comment Inspector</a></label>-->
         <label style="font-size:18px; position:absolute; right:0"><a id="getCurrentDate"></a></label>
@@ -430,11 +430,10 @@
               <p th:text="${comment.comment}">This is a sample comment</p>
               <p th:text="${comment.commentType} " ></p>
 
-
             </div>
             <div style="display: flex;" >
               <p  style="margin-right: 5px;">
-                By <a th:text="${comment.userName}" class="url fn" href="#">Çağıl Erser</a>
+                By <a th:text="${session.username}" class="url fn" href="#">Çağıl Erser</a>
               </p>
               <p th:text="${comment.dates}">
               </p>

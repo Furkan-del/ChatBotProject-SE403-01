@@ -1,447 +1,506 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org" >
-  <head th:fragment="head">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
     <title>OpinionMate News</title>
-      <style>
-footer{
-    margin:50px 0
-}
-*,:after,:before{
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    box-sizing:border-box
-}
-a{
-    color:#428bca;
-    text-decoration:none
-}
-a:focus,a:hover{
-    color:#2a6496;
-    text-decoration:underline
-}
-.img-responsive{
-    display:block;
-    height:auto;
-    max-width:100%
-}
-hr{
-    margin-top:20px;
-    margin-bottom:20px;
-    border:0;
-    border-top:1px solid grey
-}
-.text-center{
-    text-align:center
-}
-.h3,h3{
-    font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight:500;
-    line-height:1.1;
-    color:inherit
-}
-.page-header{
-    padding-bottom:9px;
-    margin:40px 0 20px;
-    border-bottom:1px solid grey
-}
-.container{
-    padding-right:15px;
-    padding-left:15px;
-    margin-right:auto;
-    margin-left:auto
-}
+    <style>
+        footer {
+            margin: 50px 0
+        }
 
-.row:after,.row:before{
-    display:table;
-    content:" "
-}
-.col-md-4{
-    position:relative;
-    min-height:1px;
-    padding-right:15px;
-    padding-left:15px
-}
-@media (min-width:992px){
-    .container{
-        width:970px
-    }
-    .col-md-4{
-        float:left
-    }
-    .col-md-4{
-        width:33%
-    }
-}
-@media (min-width:1200px){
-    .container{
-        width:1170px
-    }
-}
+        .red-text{
+          color: red;
+        }
 
+        *, :after, :before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box
+        }
 
-.nav{
-    padding-left:0;
-    margin-bottom:0;
-    list-style:none
-}
+        a {
+            color: #428bca;
+            text-decoration: none
+        }
 
-.nav>label{
-    position:relative;
-    display:block
-}
-.nav>label>a{
-    position:relative;
-    display:block;
-    padding:10px 15px
-}
-.nav>label>a:focus,.nav>label>a:hover{
-    text-decoration:none;
-    background-color:#eee
-}
+        a:focus, a:hover {
+            color: #2a6496;
+            text-decoration: underline
+        }
 
-.navbar{
-    position:relative;
-    min-height:50px;
-    margin-bottom:20px;
-    border:1px solid transparent
-}
+        .img-responsive {
+            display: block;
+            height: auto;
+            max-width: 100%
+        }
 
-@media (min-width:768px){
-    .navbar-header{
-        float:left
-    }
-}
-.navbar-collapse{
-    max-height:340px;
-    padding-right:15px;
-    padding-left:15px;
-    overflow-x:visible;
-    border-top:1px solid transparent;
-    box-shadow:inset 0 1px 0 rgba(255,255,255,.1);
-    -webkit-overflow-scrolling:touch
-}
-.navbar-collapse:after,.navbar-collapse:before{
-    display:table;
-    content:" "
-}
-.navbar-collapse:after{
-    clear:both
-}
-.navbar-collapse:after,.navbar-collapse:before{
-    display:table;
-    content:" "
-}
-.navbar-collapse:after{
-    clear:both
-}
-@media (min-width:768px){
-    .navbar-collapse.collapse{
-        display:block!important;
-        height:auto!important;
-        padding-bottom:0;
-        overflow:visible!important
-    }
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 0;
+            border-top: 1px solid grey
+        }
 
-}
-.navbar-fixed-top{
-    position:fixed;
-    right:0;
-    left:0;
-    z-index:1030
-}
-@media (min-width:768px){
-    .navbar-fixed-top{
-        border-radius:0
-    }
-}
-.navbar-fixed-top{
-    top:0;
-    border-width:0 0 1px
-}
-.navbar-brand{
-    float:left;
-    padding:15px 15px;
-    font-size:18px;
-    line-height:20px
-}
+        .text-center {
+            text-align: center
+        }
 
-@media (min-width:768px){
-    .navbar-toggle{
-        display:none
-    }
-}
+        .h3, h3 {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            line-height: 1.1;
+            color: inherit
+        }
 
-@media (min-width:768px){
-    .navbar-nav{
-        float:left;
-        margin:0
-    }
-    .navbar-nav>label{
-        float:left
-    }
-    .navbar-nav>label>a{
-        padding-top:15px;
-        padding-bottom:15px
-    }
-}
-.navbar-text{
-    float:left;
-    margin-top:15px;
-    margin-bottom:15px
-}
+        .page-header {
+            padding-bottom: 9px;
+            margin: 40px 0 20px;
+            border-bottom: 1px solid grey
+        }
 
-.navbar-inverse{
-    background-color:#222;
-    border-color:#080808
-}
-.navbar-inverse .navbar-brand{
-    color:#999
-}
-.navbar-inverse .navbar-brand:focus,.navbar-inverse .navbar-brand:hover{
-    color:#fff;
-    background-color:transparent
-}
-.navbar-inverse .navbar-text{
-    color:#999
-}
-.navbar-inverse .navbar-nav>label>a{
-    color:#999
-}
-.navbar-inverse .navbar-nav>label>a:focus,.navbar-inverse .navbar-nav>label>a:hover{
-    color:#fff;
-    background-color:transparent
-}
-.pagination{
-    display:inline-block;
-    padding-left:0;
-    margin:20px 0;
-    border-radius:4px
-}
-.pagination>label{
-    display:inline
-}
-.pagination>label>a,.pagination>label>span{
-    position:relative;
-    float:left;
-    padding:6px 12px;
-    margin-left:-1px;
-    line-height:1.428571429;
-    text-decoration:none;
-    background-color:#fff;
-    border:1px solid #ddd
-}
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto
+        }
+
+        .row:after, .row:before {
+            display: table;
+            content: " "
+        }
+
+        .col-md-4 {
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px
+        }
+
+        @media (min-width: 992px) {
+            .container {
+                width: 970px
+            }
+
+            .col-md-4 {
+                float: left
+            }
+
+            .col-md-4 {
+                width: 33%
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                width: 1170px
+            }
+        }
 
 
-.pagination>label>a:focus,.pagination>label>a:hover,.pagination>label>span:focus,.pagination>label>span:hover{
-    background-color:#eee
-}
-.pagination>.active>a,.pagination>.active>a:focus,.pagination>.active>a:hover,.pagination>.active>span,.pagination>.active>span:focus,.pagination>.active>span:hover{
-    color:#fff;
-    cursor:default;
-    background-color:#428bca;
-    border-color:#428bca;
+        .nav {
+            padding-left: 0;
+            margin-bottom: 0;
+            list-style: none
+        }
 
-}
+        .nav > label {
+            position: relative;
+            display: block
+        }
 
-/* [Object] Modal
- * =============================== */
-.modal {
-  opacity: 0;
-  visibility: hidden;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  text-align: center;
-  background: rgba(0,0,0, .9);
-  transition: opacity .25s ease;
-}
+        .nav > label > a {
+            position: relative;
+            display: block;
+            padding: 10px 15px
+        }
 
-.modal-state {
-  display: none;
-}
+        .nav > label > a:focus, .nav > label > a:hover {
+            text-decoration: none;
+            background-color: #eee
+        }
 
-.modal-state:checked + .modal {
-  opacity: 1;
-  visibility: visible;
-}
-.modal__inner {
-  transition: top .25s ease;
-  position: absolute;
-  top: -20%;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 50%;
-  margin: auto;
-  overflow: auto;
-  background: #fff;
-  border-radius: 5px;
-  padding: 1em 2em;
-  height: 32%;
-}
-.modal__close {
-  position: absolute;
-  right: 1em;
-  top: 1em;
-  width: 1.1em;
-  height: 1.1em;
-  cursor: pointer;
-}
-.modal__close:after,
-.modal__close:before {
-  content: '';
-  position: absolute;
-  width: 2px;
-  height: 1.5em;
-  background: #ccc;
-  display: block;
-  transform: rotate(45deg);
-  left: 50%;
-  margin: -3px 0 0 -1px;
-  top: 0;
-}
-.modal__close:hover:after,
-.modal__close:hover:before {
-  background: #aaa;
-}
-.modal__close:before {
-  transform: rotate(-45deg);
-}
-/* Other
- * =============================== */
-.btn {
-  cursor: pointer;
-  display: inline-block;
-}
-input{
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-}
-.button {
-  border: none;
-  color: white;
-  padding: 11px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  transition-duration: 0.6s;
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  border: 2px solid #555555;
-  width:100%;
-}
-.button:hover {
-  background-color: #555555;
-  color: white;
-}
-      </style>
-  </head>
+        .navbar {
+            position: relative;
+            color: #999999;
+            min-height: 50px;
+            margin-bottom: 20px;
+            border: 1px solid transparent
+        }
 
-  <body>
-    <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-      <div class="container">
+        @media (min-width: 768px) {
+            .navbar-header {
+                float: left
+            }
+        }
+
+        .navbar-collapse {
+            max-height: 340px;
+            padding-right: 15px;
+            padding-left: 15px;
+            overflow-x: visible;
+            border-top: 1px solid transparent;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+            -webkit-overflow-scrolling: touch
+        }
+
+        .navbar-collapse:after, .navbar-collapse:before {
+            display: table;
+            content: " "
+        }
+
+        .navbar-collapse:after {
+            clear: both
+        }
+
+        .navbar-collapse:after, .navbar-collapse:before {
+            display: table;
+            content: " "
+        }
+
+        .navbar-collapse:after {
+            clear: both
+        }
+
+        @media (min-width: 768px) {
+            .navbar-collapse.collapse {
+                display: block !important;
+                height: auto !important;
+                padding-bottom: 0;
+                overflow: visible !important
+            }
+
+        }
+
+        .navbar-fixed-top {
+            position: fixed;
+            right: 0;
+            left: 0;
+            z-index: 1030
+        }
+
+        @media (min-width: 768px) {
+            .navbar-fixed-top {
+                border-radius: 0
+            }
+        }
+
+        .navbar-fixed-top {
+            top: 0;
+            border-width: 0 0 1px
+        }
+
+        .navbar-brand {
+            float: left;
+            padding: 15px 15px;
+            font-size: 18px;
+            line-height: 20px
+        }
+
+        @media (min-width: 768px) {
+            .navbar-toggle {
+                display: none
+            }
+        }
+
+        @media (min-width: 768px) {
+            .navbar-nav {
+                float: left;
+                margin: 0
+            }
+
+            .navbar-nav > label {
+                float: left
+            }
+
+            .navbar-nav > label > a {
+                padding-top: 15px;
+                padding-bottom: 15px
+            }
+        }
+
+        .navbar-text {
+            float: left;
+            margin-top: 15px;
+            margin-bottom: 15px
+        }
+
+        .navbar-inverse {
+            background-color: #080808;
+            border-color: #080808
+        }
+
+        .navbar-inverse .navbar-brand {
+            color: #999
+        }
+
+        .navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover {
+            color: #fff;
+            background-color: transparent
+        }
+
+        .navbar-inverse .navbar-text {
+            color: #999
+        }
+
+        .navbar-inverse .navbar-nav > label > a {
+            color: #999
+        }
+
+        .navbar-inverse .navbar-nav > label > a:focus, .navbar-inverse .navbar-nav > label > a:hover {
+            color: #fff;
+            background-color: transparent
+        }
+
+        .pagination {
+            display: inline-block;
+            padding-left: 0;
+            margin: 20px 0;
+            border-radius: 4px
+        }
+
+        .pagination > label {
+            display: inline
+        }
+
+        .pagination > label > a, .pagination > label > span {
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.428571429;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #ddd
+        }
+
+
+        .pagination > label > a:focus, .pagination > label > a:hover, .pagination > label > span:focus, .pagination > label > span:hover {
+            background-color: #eee
+        }
+
+        .pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+            color: #fff;
+            cursor: default;
+            background-color: #428bca;
+            border-color: #428bca;
+
+        }
+
+        /* [Object] Modal
+         * =============================== */
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            background: rgba(0, 0, 0, .9);
+            transition: opacity .25s ease;
+        }
+
+        .modal-state {
+            display: none;
+        }
+
+        .modal-state:checked + .modal {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal__inner {
+            transition: top .25s ease;
+            position: absolute;
+            top: -20%;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 50%;
+            margin: auto;
+            overflow: auto;
+            background: #fff;
+            border-radius: 5px;
+            padding: 1em 2em;
+            height: 32%;
+        }
+
+        .modal__close {
+            position: absolute;
+            right: 1em;
+            top: 1em;
+            width: 1.1em;
+            height: 1.1em;
+            cursor: pointer;
+        }
+
+        .modal__close:after,
+        .modal__close:before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 1.5em;
+            background: #ccc;
+            display: block;
+            transform: rotate(45deg);
+            left: 50%;
+            margin: -3px 0 0 -1px;
+            top: 0;
+        }
+
+        .modal__close:hover:after,
+        .modal__close:hover:before {
+            background: #aaa;
+        }
+
+        .modal__close:before {
+            transform: rotate(-45deg);
+        }
+
+        /* Other
+         * =============================== */
+        .btn {
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        .button {
+            border: none;
+            color: white;
+            padding: 11px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition-duration: 0.6s;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            border: 2px solid #555555;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #555555;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+    <div class="container">
         <div class="navbar-header">
-          <a style="font-size:25px;" href="#" class="navbar-brand">OpinionMate</a>
+            <a style="font-size:25px;" href="#" class="navbar-brand">OpinionMate</a>
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul class="nav navbar-nav">
-            <label><a href="#usernameInfo"  >Username</a></label>
-            <label><a href="#contact">Contact Admins</a></label>
-            <label class ="btn" for="modal-1"><a>Comment Inspector</a></label>
-            <label style="font-size:18px; position:absolute; right:0"><a id="getCurrentDate"></a></label>
-          </ul>
+            <ul class="nav navbar-nav">
+                <label><p th:text="${session.username}">Username</p></label>
+                <label><a href="#contact">Contact Admins</a></label>
+                <label class="btn" for="modal-1"><a>Comment Inspector</a></label>
+                <label style="font-size:18px; position:absolute; right:0"><a id="getCurrentDate"></a></label>
+            </ul>
         </div>
-      </div>
-    </nav>
+    </div>
+</nav>
 
-    <div class="container" style="margin-top:25px;">
-      <div class="row">
+<div class="container" style="margin-top:25px;">
+    <div class="row">
         <div class="col-lg-12">
-          <h1 class="page-header">OpinionMate: <small>The new era of stating your opinions</small></h1>
+            <h1 class="page-header">OpinionMate: <small>The new era of stating your opinions</small></h1>
         </div>
 
-      </div>
+    </div>
 
-      <div class="row">
-
-        <div class="col-md-4 portfolio-item">
-          <a href="#project-link"><img class="img-responsive" src="https://duet-cdn.vox-cdn.com/thumbor/0x0:1800x1200/750x500/filters:focal(160x588:161x589):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/24534634/Text_box.jpg"></a>
-          <h3><a th:href="@{mainPage/comments}">ChatGPT started a new kind of AI race and made text boxes cool again</a></h3>
-          <p>Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest innovation?</p>
-        </div>
+    <div class="row">
 
         <div class="col-md-4 portfolio-item">
-          <a href="#project-link"><img class="img-responsive" src="https://duet-cdn.vox-cdn.com/thumbor/0x0:2560x1440/750x500/filters:focal(1280x720:1281x721):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/24534638/LanguageCode_Developer_GameTitle_C2_2560x1440_fbd70f994dbceed3377fd22186f6a529.jpeg"></a>
-          <h3><a href="#project-link">Trying to recreate Mario Kart in the Fortnite editor could get you banned</a></h3>
-          <p>Unreal Editor for Fortnite adds powerful new tools to make new games, but Epic doesn’t want you using them to recreate things owned by others.</p>
+            <a href="#project-link"><img class="img-responsive" src="/static/chatbot.png"></a>
+            <h3><a th:href="@{mainPage/comments}">ChatGPT started a new kind of AI race and made text boxes cool
+                again</a></h3>
+            <p>Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest
+                innovation?</p>
         </div>
 
         <div class="col-md-4 portfolio-item">
-          <a href="#project-link"><img class="img-responsive" src="https://duet-cdn.vox-cdn.com/thumbor/0x0:3600x1530/640x640/filters:focal(2085x490:2086x491):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/24534542/DD_FF_072R.jpg"></a>
-          <h3><a href="#project-link">Dungeons & Dragons: Honor Among Thieves is great — you just have to roll with <it></it></a></h3>
-          <p>Engaging, comical, and unapologetically dorky, Honor Among Thieves occasionally stumbles under its own ambition but ultimately proves that high fantasy doesn’t always have to be highbrow.</p>
+            <a href="#project-link"><img class="img-responsive" src="/static/dragon.png"></a>
+            <h3><a href="#project-link">Trying to recreate Mario Kart in the Fortnite editor could get you banned</a>
+            </h3>
+            <p>Unreal Editor for Fortnite adds powerful new tools to make new games, but Epic doesn’t want you using
+                them to recreate things owned by others.</p>
         </div>
 
-      </div>
+        <div class="col-md-4 portfolio-item">
+            <a href="#project-link"><img class="img-responsive" src="/images/1668243812510.jpeg"></a>
+            <h3><a href="#project-link">Dungeons & Dragons: Honor Among Thieves is great — you just have to roll with
+                <it></it>
+            </a></h3>
+            <p>Engaging, comical, and unapologetically dorky, Honor Among Thieves occasionally stumbles under its own
+                ambition but ultimately proves that high fantasy doesn’t always have to be highbrow.</p>
+        </div>
+
+    </div>
     <div>
-      <div class="row text-center">
-        <div class="col-lg-12">
-          <ul class="pagination">
-            <label><a href="#">&laquo;</a></label>
-            <label class="active"><a href="#">1</a></label>
-            <label><a href="#">&raquo;</a></label>
-          </ul>
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <label><a href="#">&laquo;</a></label>
+                    <label class="active"><a href="#">1</a></label>
+                    <label><a href="#">&raquo;</a></label>
+                </ul>
+            </div>
         </div>
-      </div>
     </div>
 </div>
 
-    <div class="container">
-      <hr>
-      <footer>
+<div class="container">
+    <hr>
+    <footer>
         <div class="row">
-          <div class="col-lg-12">
-            <p>Copyright &copy; OpinionMate <span id="getCurrentYear"></span></p>
-
-          </div>
+            <div class="col-lg-12">
+                <p>Copyright &copy; OpinionMate <span id="getCurrentYear"></span></p>
+                <p th:text="${userName}">hallo</p>
+            </div>
         </div>
-      </footer>
+    </footer>
 
-    <input class="modal-state" id="modal-1" type="checkbox" />
-  <div class="modal">
-    <label class="modal__bg" for="modal-1"></label>
-    <div class="modal__inner">
-      <label class="modal__close" for="modal-1"></label>
-      <form   th:action="@{/mainPage}" method="post">
-        <h2>Enter Your Comment For Inspection</h2>
-        <input type="text" name="prompt"  />
-        <button class="button" style=""  type="submit">Submit</button>
-        <p  th:text="${responseData}"></p>
-        </form >
+    <input class="modal-state" id="modal-1" type="checkbox"/>
+    <div class="modal">
+        <label class="modal__bg" for="modal-1"></label>
+        <div class="modal__inner">
+            <label class="modal__close" for="modal-1"></label>
+            <form th:action="@{/mainPage}" method="post">
+                <h2>Enter Your Comment For Inspection</h2>
+                <input type="text" name="prompt"/>
+                <button class="button" style="" type="submit">Submit</button>
+                <p th:text="${responseData}"></p>
+            </form>
 
-  </div>
-  </div>
-
+        </div>
     </div>
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script type="text/javascript">
-      const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      var dt = new Date();
-      document.getElementById('getCurrentYear').innerHTML = dt.getFullYear();
-      document.getElementById('getCurrentDate').innerHTML = dt.getDate() + "/" + dt.getMonth() + "/" + dt.getFullYear() + " " + weekdays[dt.getDay()];
-    </script>
 
-  </body>
+</div>
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/bootstrap.js"></script>
+<script type="text/javascript">
+    const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var dt = new Date();
+    document.getElementById('getCurrentYear').innerHTML = dt.getFullYear();
+    document.getElementById('getCurrentDate').innerHTML = dt.getDate() + "/" + dt.getMonth() + "/" + dt.getFullYear() + " " + weekdays[dt.getDay()];
+</script>
+
+</body>
 
 </html>

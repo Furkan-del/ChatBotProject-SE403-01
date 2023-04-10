@@ -10,36 +10,43 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @AllArgsConstructor
 @Data
 public class RegistrationController {
+
     private UserServiceImpl userService;
 
     @GetMapping("/")
-    public String showLoginForm(){
+    public String showLoginForm() {
         return "login";
     }
 
-     @PostMapping("/")
-     public String processLogin(@RequestParam(value = "username",required = false)String username,@RequestParam(value = "password",required = false)String password){
-        User user=new User();
+    @PostMapping("/")
+    public String processLogin(@RequestParam(value = "userName", required = false) String username, @RequestParam(value = "password", required = false) String password, HttpSession httpSession) {
+        User user = new User();
         user.setUserName(username);
-        user.setPassword(password);
-         if(userService.checkUser(username,user)){
-             return "redirect:/mainPage";
-         }
-         else if (user.getUserName().equals("admin")&&user.getPassword().equals("12345")) {
-             return  "redirect:/admin";
-         } else{
-             return "redirect:/";
-         }
-     }
+        user.setPassword(password);/*
+        StringName.valUserName = username;*/
 
-     @RequestMapping(name = "/mainPage",method = RequestMethod.GET)
-     public String loginHome(){
-         return "indexes";
-     }
+        if (userService.checkUser(username, user)) {
+            httpSession.setAttribute("username",username);
+            return "redirect:/mainPage";
+        } else if (user.getUserName().equals("admin") && user.getPassword().equals("12345")) {
+            return "redirect:/admin";
+        } else {
+            return "redirect:/";
+        }
+    }
+
+    @RequestMapping(name = "/mainPage", method = RequestMethod.GET)
+    public String loginHome(Model model,HttpSession httpSession) {
+        String userName=(String) httpSession.getAttribute("username");
+        model.addAttribute("userName",userName);
+        return "indexes";
+    }
 
 
     @GetMapping("/register")
