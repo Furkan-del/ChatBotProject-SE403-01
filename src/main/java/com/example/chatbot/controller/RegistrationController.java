@@ -58,9 +58,9 @@ public class RegistrationController {
 
     @PostMapping("/register")
     public String registration(@ModelAttribute("user") User user, BindingResult bindingResult) {
-        User existing = userService.findByEmail(user.getEmail());
+        User existing = userService.findByUsername(user.getUserName());
         if (existing != null) {
-            bindingResult.reject("email", null, "There is already an account registered");
+            bindingResult.reject("userName", null, "There is already an account registered");
         }
 
         userService.saveUser(user);
