@@ -6,6 +6,14 @@ import com.example.chatbot.entity.News;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+
+import java.io.IOException;
+import java.util.Base64;
+import java.util.Date;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -13,13 +21,28 @@ import org.springframework.stereotype.Service;
 public class NewsServiceImpl implements NewsService {
     private final NewsRepository newsRepository;
 
+
     @Override
-    public void addNew(News news) {
+    public void saveNew(MultipartFile multipartFile, String newsName, String newsHeader) {
+        News news=new News();
+        String fileName= StringUtils.cleanPath(multipartFile.getOriginalFilename()); //dosya adını temizler kaydeder
+        if(fileName.contains("..")){
+            System.out.println("Not a valid file");
+        }
+        try {
+            news.setPhoto(Base64.getEncoder().encodeToString(multipartFile.getBytes())); //stringe dönüştürür
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        news.setNewsName(newsName);
+        news.setNewsHeader(newsHeader);
         newsRepository.save(news);
+
     }
 
     @Override
-    public void deleteNews(News news) {
-
+    public List<News> getAllNews() {
+        return newsRepository.findAll();
     }
+
 }

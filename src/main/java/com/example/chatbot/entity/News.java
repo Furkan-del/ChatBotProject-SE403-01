@@ -20,17 +20,17 @@ public class News {
     @Column(name = "newsName")
     private String newsName;
 
+    @Column(name = "newsHeader")
+    private String newsHeader;
+
     @Column(name = "newsType")
-    private String newsType;
+    private Date newsType;
 
-    @Column(name = "newsDate")
-    private Date newsDate;
-
-
-    @Column(name = "image")
+    @Column(name = "imagedata",columnDefinition = "MEDIUMBLOB")
     @Lob
-    private byte[] photo;
+    private String photo;
 
-
-
+    @ManyToOne
+    @JoinTable(name = "user_id")
+    private User user;
 }

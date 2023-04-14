@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -25,5 +26,8 @@ public class User {
     private String password;
     @Column(name = "phoneNumber")
     private Integer phoneNumber;
+
+    @OneToMany(mappedBy = "user")
+    private List<News> newsList;
 
 }
