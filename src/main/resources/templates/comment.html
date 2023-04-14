@@ -393,7 +393,7 @@
     </div>
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <label><a href="#usernameInfo">Username</a></label>
+        <label><a href="#usernameInfo" th:text="${session.username}">Username</a></label>
         <label><a href="#contact">Contact Admins</a></label>
        <!-- <label class="btn" for="modal-1"><a>Comment Inspector</a></label>-->
         <label style="font-size:18px; position:absolute; right:0"><a id="getCurrentDate"></a></label>
@@ -411,7 +411,7 @@
   </div>
 
   <div class="col-md-4 portfolio-item">
-    <a href="#project-link"><img class="img-responsive" src="/static/chatbot.png"></a>
+    <a href="#project-link"><img class="img-responsive" src="https://duet-cdn.vox-cdn.com/thumbor/0x0:1800x1200/750x500/filters:focal(160x588:161x589):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/24534634/Text_box.jpg"></a>
     <h3><a href="#project-link">ChatGPT started a new kind of AI race and made text boxes cool again</a></h3>
     <p>Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest innovation?</p>
   </div>
@@ -430,11 +430,10 @@
               <p th:text="${comment.comment}">This is a sample comment</p>
               <p th:text="${comment.commentType} " ></p>
 
-
             </div>
             <div style="display: flex;" >
               <p  style="margin-right: 5px;">
-                By <a th:text="${comment.userName}" class="url fn" href="#">Çağıl Erser</a>
+                By <a th:text="${session.username}" class="url fn" href="#">Çağıl Erser</a>
               </p>
               <p th:text="${comment.dates}">
               </p>

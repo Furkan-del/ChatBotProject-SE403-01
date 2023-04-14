@@ -27,8 +27,6 @@ public class Comment {
     @Column(name = "date")
     private String dates;
 
-    @Column(name = "userName")
-    private String userName;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

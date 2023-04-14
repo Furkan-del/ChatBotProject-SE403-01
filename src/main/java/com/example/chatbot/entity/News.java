@@ -25,7 +25,12 @@ public class News {
 
     @Column(name = "newsDate")
     private Date newsDate;
-    @ManyToOne
-    @JoinColumn(name = "adminId")
-    private Admin admin;
+
+
+    @Column(name = "image")
+    @Lob
+    private byte[] photo;
+
+
+
 }
