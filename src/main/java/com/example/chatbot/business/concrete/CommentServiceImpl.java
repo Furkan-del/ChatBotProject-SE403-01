@@ -18,8 +18,6 @@ private final CommentRepository commentRepository;
 
     @Override
     public List<Comment> getAllComments() {
-
-
         return  commentRepository.findAll();
     }
 

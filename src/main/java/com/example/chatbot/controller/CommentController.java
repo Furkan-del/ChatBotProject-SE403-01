@@ -26,13 +26,11 @@ public class CommentController {
     private final ChatGptServiceImpl chatGptService;
 
 
-
     @GetMapping("mainPage/comments")
     public String getAllComments(Model model) {
         model.addAttribute("commentsAll", commentService.getAllComments());
         return "comment";
     }
-
 
 
     @PostMapping("/comments")
@@ -41,16 +39,16 @@ public class CommentController {
         Date currentDate = new Date();
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         comment.setDates(df.format(currentDate));
-        String answer=chatGptService.generateText(comments);
+        String answer = chatGptService.generateText(comments);
         comment.setCommentType(answer);
-       /* comment.setUserId(1L);*/
+        /* comment.setUserId(1L);*/
         commentService.add(comment);
         return "redirect:/mainPage/comments";
     }
 
     @GetMapping("mainPage/comments/delete/{id}")
-    public  String delete(@PathVariable Long id){
-        Comment comment=commentService.getCommentById(id);
+    public String delete(@PathVariable Long id) {
+        Comment comment = commentService.getCommentById(id);
         commentService.delete(comment);
         return "redirect:/comments";
     }

@@ -1,7 +1,6 @@
 package com.example.chatbot.business.concrete;
 
 import com.example.chatbot.business.abstracts.UserService;
-import com.example.chatbot.dataAccesLayer.AdminRepository;
 import com.example.chatbot.dataAccesLayer.UserRepository;
 import com.example.chatbot.entity.User;
 import lombok.AllArgsConstructor;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
 @Data
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final AdminRepository adminRepository;
+
 
 
     @Override
