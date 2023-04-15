@@ -34,7 +34,7 @@ public class NewsServiceImpl implements NewsService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        news.setNewsName(newsName);
+        news.setNewsContent(newsName);
         news.setNewsHeader(newsHeader);
         newsRepository.save(news);
 
