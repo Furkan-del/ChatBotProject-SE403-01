@@ -2,6 +2,7 @@ package com.example.chatbot.controller;
 
 import com.example.chatbot.business.abstracts.NewsService;
 import com.example.chatbot.business.concrete.NewsServiceImpl;
+import com.example.chatbot.entity.News;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
@@ -20,23 +22,23 @@ public class NewsController {
     private final NewsServiceImpl newsService;
 
     @PostMapping("/addNew")
-    public String addNew(@RequestParam("file") MultipartFile multipartFile, @RequestParam("newsName") String newsName,String newsHeader) {
+    public String addNew(@RequestParam(value = "file",required = false) MultipartFile multipartFile, @RequestParam(value = "newsContent",required = false) String newsName,@RequestParam(value = "newsHeader",required = false) String newsHeader) {
         newsService.saveNew(multipartFile, newsName, newsHeader);
-        return "redirect:/mainPage";
+        return "redirect:/mainPage/news";
 
     }
-/*
 
-    @RequestMapping(value = "/mainPage",method = RequestMethod.GET)
+    @GetMapping("/mainPage/news")
     public String getAllNew(Model model) {
-        model.addAttribute("news", newsService.getAllNews());
+        List<News> newsList=newsService.getAllNews();
+        model.addAttribute("newImageList",newsList);
         return "indexes";
     }
-*/
+
 
     @GetMapping("/admin")
     public String showAddNew() {
-        return "addProduct";
+        return "admin";
     }
 
 

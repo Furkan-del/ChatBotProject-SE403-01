@@ -1,7 +1,9 @@
 package com.example.chatbot.controller;
 
+import com.example.chatbot.business.concrete.NewsServiceImpl;
 import com.example.chatbot.business.concrete.UserServiceImpl;
 
+import com.example.chatbot.entity.News;
 import com.example.chatbot.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,13 +13,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @AllArgsConstructor
 @Data
 public class RegistrationController {
 
-    private UserServiceImpl userService;
+    private final UserServiceImpl userService;
+
+
 
     @GetMapping("/")
     public String showLoginForm() {
@@ -31,20 +36,21 @@ public class RegistrationController {
         user.setPassword(password);/*
         StringName.valUserName = username;*/
 
-        if (userService.checkUser(username, user)) {
-            httpSession.setAttribute("username",username);
-            return "redirect:/mainPage";
-        } else if (user.getUserName().equals("admin") && user.getPassword().equals("12345")) {
+        if (user.getUserName().equals("admin") && user.getPassword().equals("12345")) {
             return "redirect:/admin";
+        }
+        if (userService.checkUser(username, user)) {
+            httpSession.setAttribute("username", username);
+            return "redirect:/mainPage";
         } else {
             return "redirect:/";
         }
     }
 
     @RequestMapping(name = "/mainPage", method = RequestMethod.GET)
-    public String loginHome(Model model,HttpSession httpSession) {
-        String userName=(String) httpSession.getAttribute("username");
-        model.addAttribute("userName",userName);
+    public String loginHome(Model model, HttpSession httpSession) {
+        String userName = (String) httpSession.getAttribute("username");
+        model.addAttribute("userName", userName);
         return "indexes";
     }
 

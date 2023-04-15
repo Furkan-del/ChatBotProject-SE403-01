@@ -391,19 +391,18 @@
 
     <div class="row" style="position: relative">
 
-        <div>
-            <a href="#project-link"><img class="img-responsive" src="/images/chatbot.jpg"></a>
-            <h3><a th:href="@{mainPage/comments}">ChatGPT started a new kind of AI race and made text boxes cool
+        <div th:each="image: ${newImageList}">
+            <a href="#project-link"><img class="img-responsive" th:src="'data:images/png;base64,' + ${image.photo}"></a>
+            <h3><a th:text="${image.newsHeader}" th:href="@{mainPage/comments}">ChatGPT started a new kind of AI race and made text boxes cool
                 again</a></h3>
-            <p>Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest
+            <p th:text="${image.newsContent}">Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest
                 innovation?</p>
             <hr>
         </div>
-
     </div>
-
 </div>
 
+<a th:href="@{/admin}" class="button">Go to the Admin Page</a>
 <div class="container">
 
     <footer>

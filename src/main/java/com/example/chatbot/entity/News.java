@@ -5,32 +5,33 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
-@Entity
 @Data
-@Table(name = "news")
+@Table(name = "News")
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 public class News {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "newsName")
-    private String newsName;
+    @Column(name = "newsContent")
+    private String newsContent;
 
-    @Column(name = "newsHeader")
+    @Column(name = "NewsHeader")
     private String newsHeader;
 
     @Column(name = "newsType")
     private Date newsType;
 
-    @Column(name = "imagedata",columnDefinition = "MEDIUMBLOB")
+    @Column(name = "imageData")
     @Lob
     private String photo;
 
     @ManyToOne
-    @JoinTable(name = "user_id")
+    @JoinColumn(name = "user_id")
     private User user;
+
 }

@@ -385,18 +385,18 @@
             <h1 class="page-header">OpinionMate: <small>The new era of stating your opinions</small></h1>
         </div>
     <div>
-    <form method="post">
+    <form method="post" th:action="@{/addNew}"  enctype="multipart/form-data">
         <div class="form__group field">
-            <input type="input" class="form__field" placeholder="Header"  id="header"  required />
+            <input type="input" name="newsHeader" class="form__field" placeholder="Header"  id="header"  required />
             <label for="header" class="form__label">Header</label>
         </div>
 
         <div class="form__group field">
-            <input type="input" class="form__field" placeholder="Content" id="content"  required />
+            <input type="input"  name="newsContent" class="form__field" placeholder="Content" id="content"  required />
             <label for="content" class="form__label">Content</label>
         </div>
 
-        <input style="margin-top: 50px" type="file">
+        <input style="margin-top: 50px" type="file" name="file">
 
 
         <button class="button">Submit</button>

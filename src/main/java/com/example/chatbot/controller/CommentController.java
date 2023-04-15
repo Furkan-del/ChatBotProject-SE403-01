@@ -2,8 +2,6 @@ package com.example.chatbot.controller;
 
 import com.example.chatbot.business.concrete.ChatGptServiceImpl;
 import com.example.chatbot.business.concrete.CommentServiceImpl;
-
-import com.example.chatbot.business.concrete.UserServiceImpl;
 import com.example.chatbot.entity.Comment;
 
 
