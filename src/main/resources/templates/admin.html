@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js%22%3E"></script>
 <head th:fragment="head">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,11 @@
     <meta name="author" content="">
     <title>OpinionMate News</title>
     <style>
+
+
+        /*Main*/
+
+
         footer {
             margin: 50px 0
         }
@@ -255,91 +261,12 @@
 
 
 
-        /* [Object] Modal
+
+
+        /* Button
          * =============================== */
-        .modal {
-            opacity: 0;
-            visibility: hidden;
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            text-align: center;
-            background: rgba(0, 0, 0, .9);
-            transition: opacity .25s ease;
-        }
 
-        .modal-state {
-            display: none;
-        }
 
-        .modal-state:checked + .modal {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal__inner {
-            transition: top .25s ease;
-            position: absolute;
-            top: -20%;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            width: 50%;
-            margin: auto;
-            overflow: auto;
-            background: #fff;
-            border-radius: 5px;
-            padding: 1em 2em;
-            height: 32%;
-        }
-
-        .modal__close {
-            position: absolute;
-            right: 1em;
-            top: 1em;
-            width: 1.1em;
-            height: 1.1em;
-            cursor: pointer;
-        }
-
-        .modal__close:after,
-        .modal__close:before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            height: 1.5em;
-            background: #ccc;
-            display: block;
-            transform: rotate(45deg);
-            left: 50%;
-            margin: -3px 0 0 -1px;
-            top: 0;
-        }
-
-        .modal__close:hover:after,
-        .modal__close:hover:before {
-            background: #aaa;
-        }
-
-        .modal__close:before {
-            transform: rotate(-45deg);
-        }
-
-        /* Other
-         * =============================== */
-        .btn {
-            cursor: pointer;
-            display: inline-block;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-        }
 
         .button {
             border: none;
@@ -352,6 +279,7 @@
             transition-duration: 0.6s;
             cursor: pointer;
             background-color: white;
+            margin-top: 50px;
             color: black;
             border: 2px solid #555555;
             width: 100%;
@@ -361,6 +289,78 @@
             background-color: #555555;
             color: white;
         }
+
+        /* Input
+         * =============================== */
+
+        .form__group {
+            position: relative;
+            padding: 15px 0 0;
+            margin-top: 10px;
+            width: 50%;
+        }
+
+        .form__field {
+            font-family: inherit;
+            width: 200%;
+            border: 0;
+            border-bottom: 2px solid #6b6b6b;
+            outline: 0;
+            font-size: 1.3rem;
+            color: #000000;
+            padding: 7px 0;
+            background: transparent;
+            transition: border-color 0.2s;
+        }
+
+        .form__field::placeholder {
+            color: transparent;
+        }
+
+        .form__field:focus::placeholder {
+            color: transparent;
+        }
+
+        .form__field:focus + .form__label,
+        .form__field:not(:placeholder-shown) + .form__label {
+            position: absolute;
+            top: 0;
+            display: block;
+            transition: 0.2s;
+            font-size: 1rem;
+            color: #6b6b6b;
+            font-weight: 700;
+        }
+
+        .form__field:focus {
+            padding-bottom: 6px;
+            font-weight: 700;
+            border-width: 3px;
+            border-image: linear-gradient(to right, gray, #000000);
+            border-image-slice: 1;
+        }
+
+        .form__label {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            font-size: 1.3rem;
+            color: #6b6b6b;
+            pointer-events: none;
+            transition: 0.2s;
+        }
+
+        .form__field:focus + .form__label,
+        .form__field:not(:placeholder-shown) + .form__label {
+            top: 0;
+            font-size: 1rem;
+            color: #000000;
+            font-weight: 700;
+        }
+        /* Image
+         * =============================== */
+
+
     </style>
 </head>
 
@@ -373,8 +373,6 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
                 <label><p th:text="${session.username}">Username</p></label>
-                <label><a href="#contact">Contact Admins</a></label>
-                <label class="btn" for="modal-1"><a>Comment Inspector</a></label>
                 <label style="font-size:18px; position:absolute; right:0"><a id="getCurrentDate"></a></label>
             </ul>
         </div>
@@ -386,26 +384,30 @@
         <div class="col-lg-12">
             <h1 class="page-header">OpinionMate: <small>The new era of stating your opinions</small></h1>
         </div>
-
-    </div>
-
-    <div class="row" style="position: relative">
-
-        <div>
-            <a href="#project-link"><img class="img-responsive" src="/images/chatbot.jpg"></a>
-            <h3><a th:href="@{mainPage/comments}">ChatGPT started a new kind of AI race and made text boxes cool
-                again</a></h3>
-            <p>Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest
-                innovation?</p>
-            <hr>
+    <div>
+    <form method="post">
+        <div class="form__group field">
+            <input type="input" class="form__field" placeholder="Header"  id="header"  required />
+            <label for="header" class="form__label">Header</label>
         </div>
 
+        <div class="form__group field">
+            <input type="input" class="form__field" placeholder="Content" id="content"  required />
+            <label for="content" class="form__label">Content</label>
+        </div>
+
+        <input style="margin-top: 50px" type="file">
+
+
+        <button class="button">Submit</button>
+    </form>
     </div>
+    </div>
+    <hr>
 
 </div>
 
 <div class="container">
-
     <footer>
         <div class="row">
             <div class="col-lg-12">
@@ -415,19 +417,8 @@
         </div>
     </footer>
 
-    <input class="modal-state" id="modal-1" type="checkbox"/>
-    <div class="modal">
-        <label class="modal__bg" for="modal-1"></label>
-        <div class="modal__inner">
-            <label class="modal__close" for="modal-1"></label>
-            <form th:action="@{/mainPage}" method="post">
-                <h2>Enter Your Comment For Inspection</h2>
-                <input type="text" name="prompt"/>
-                <button class="button" style="" type="submit">Submit</button>
-                <p th:text="${responseData}"></p>
-            </form>
-        </div>
-    </div>
+
+
 </div>
 
 <script>
@@ -436,6 +427,8 @@
     document.getElementById('getCurrentYear').innerHTML = dt.getFullYear();
     document.getElementById('getCurrentDate').innerHTML = dt.getDate() + "/" + dt.getMonth() + "/" + dt.getFullYear() + " " + weekdays[dt.getDay()];
 </script>
+
+
 
 </body>
 
