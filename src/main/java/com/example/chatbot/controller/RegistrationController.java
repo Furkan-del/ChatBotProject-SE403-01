@@ -19,10 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class RegistrationController {
-
     private final UserServiceImpl userService;
-
-
 
     @GetMapping("/")
     public String showLoginForm() {
@@ -38,6 +35,7 @@ public class RegistrationController {
 
         if (user.getUserName().equals("admin") && user.getPassword().equals("12345")) {
             httpSession.setAttribute("isAdmin",true);
+            httpSession.setAttribute("adminName",user.getUserName());
             return "redirect:/admin";
         }
         if (userService.checkUser(username, user)) {

@@ -11,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -20,12 +18,10 @@ import java.util.List;
 @Data
 public class NewsController {
     private final NewsServiceImpl newsService;
-
     @PostMapping("/addNew")
     public String addNew(@RequestParam(value = "file",required = false) MultipartFile multipartFile, @RequestParam(value = "newsContent",required = false) String newsName,@RequestParam(value = "newsHeader",required = false) String newsHeader) {
         newsService.saveNew(multipartFile, newsName, newsHeader);
         return "redirect:/mainPage/news";
-
     }
 
     @GetMapping("/mainPage/news")
@@ -40,6 +36,4 @@ public class NewsController {
     public String showAddNew() {
         return "admin";
     }
-
-
 }
