@@ -23,9 +23,6 @@ public class News {
     @Column(name = "NewsHeader")
     private String newsHeader;
 
-    @Column(name = "newsType")
-    private Date newsType;
-
     @Column(name = "imageData")
     @Lob
     private String photo;
