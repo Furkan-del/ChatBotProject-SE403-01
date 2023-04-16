@@ -402,7 +402,7 @@
     </div>
 </div>
 
-<a th:href="@{/admin}" class="button">Go to the Admin Page</a>
+<a th:if="${session.userAdmin}" th:href="@{/admin}" class="button">Go to the Admin Page</a>
 <div class="container">
 
     <footer>
