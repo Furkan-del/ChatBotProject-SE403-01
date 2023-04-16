@@ -11,4 +11,5 @@ public interface NewsService {
      void saveNew(MultipartFile multipartFile, String newsName, String newsHeader);
 
      List<News> getAllNews();
+     News getNewsById(Long id);
 }

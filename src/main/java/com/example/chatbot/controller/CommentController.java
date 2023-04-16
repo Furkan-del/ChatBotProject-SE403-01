@@ -2,6 +2,7 @@ package com.example.chatbot.controller;
 
 import com.example.chatbot.business.concrete.ChatGptServiceImpl;
 import com.example.chatbot.business.concrete.CommentServiceImpl;
+import com.example.chatbot.business.concrete.NewsServiceImpl;
 import com.example.chatbot.entity.Comment;
 
 
@@ -22,12 +23,14 @@ import java.util.Date;
 public class CommentController {
     private final CommentServiceImpl commentService;
     private final ChatGptServiceImpl chatGptService;
+    private final NewsServiceImpl newsService;
 
 
     @GetMapping("mainPage/comments")
     public String getAllComments(Model model) {
         model.addAttribute("commentsAll", commentService.getAllComments());
-        return "comment";
+       /* model.addAttribute("")
+       */ return "comment";
     }
 
 
@@ -49,6 +52,12 @@ public class CommentController {
         Comment comment = commentService.getCommentById(id);
         commentService.delete(comment);
         return "redirect:/comments";
+    }
+    @GetMapping("mainPage/comments/{id}")
+    public String getShowCommentById(@PathVariable Long id,Model model){
+
+        model.addAttribute("newsCommentForId",newsService.getNewsById(id));
+        return "comment";
     }
 
 }

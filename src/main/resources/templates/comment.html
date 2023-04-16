@@ -410,10 +410,10 @@
 
   </div>
 
-  <div class="col-md-4 portfolio-item">
-    <a href="#project-link"><img class="img-responsive" src="/images/chatbot.jpg"></a>
-    <h3><a href="#project-link">ChatGPT started a new kind of AI race and made text boxes cool again</a></h3>
-    <p>Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest innovation?</p>
+  <div class="col-md-4 portfolio-item" >
+    <a href="#project-link"><img class="img-responsive" th:src="'data:images/png;base64,' + ${newsCommentForId.photo}"></a>
+    <h3><a th:text="${newsCommentForId.newsHeader}">ChatGPT started a new kind of AI race and made text boxes cool again</a></h3>
+    <p th:text="${newsCommentForId.newsContent}">Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest innovation?</p>
   </div>
 
 
