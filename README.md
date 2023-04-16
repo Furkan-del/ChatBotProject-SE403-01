@@ -26,3 +26,6 @@ role of NLP
 
 # Database Tables and Diagram (PNG)
 https://drive.google.com/drive/folders/1I4lSwprkFKOWQzoVoUTnYxMD1GHqXJ1R?usp=share_link
+
+# The Risk Management Plan for this project
+https://drive.google.com/drive/folders/1xH__CdVoQEQj-fq3IuC5f30koY4xVlD9?usp=sharing
