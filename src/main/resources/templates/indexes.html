@@ -392,8 +392,8 @@
     <div class="row" style="position: relative">
 
         <div th:each="image: ${newImageList}">
-            <a href="#project-link"><img class="img-responsive" th:src="'data:images/png;base64,' + ${image.photo}"></a>
-            <h3><a th:text="${image.newsHeader}" th:href="@{mainPage/comments}">ChatGPT started a new kind of AI race and made text boxes cool
+            <a ><img class="img-responsive" th:src="'data:images/png;base64,' + ${image.photo}"></a>
+            <h3><a th:text="${image.newsHeader}" th:href="@{http://localhost:8080/mainPage/comments}">ChatGPT started a new kind of AI race and made text boxes cool
                 again</a></h3>
             <p th:text="${image.newsContent}">Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest
                 innovation?</p>
@@ -402,7 +402,8 @@
     </div>
 </div>
 
-<a th:if="${session.userAdmin}" th:href="@{/admin}" class="button">Go to the Admin Page</a>
+<a th:if="${session.isAdmin}" th:href="@{/admin}" class="button">Go to the Admin Page</a>
+
 <div class="container">
 
     <footer>
