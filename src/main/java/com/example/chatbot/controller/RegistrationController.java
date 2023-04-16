@@ -37,11 +37,12 @@ public class RegistrationController {
         StringName.valUserName = username;*/
 
         if (user.getUserName().equals("admin") && user.getPassword().equals("12345")) {
+            httpSession.setAttribute("userAdmin",user.getUserName().equals("admin"));
             return "redirect:/admin";
         }
         if (userService.checkUser(username, user)) {
             httpSession.setAttribute("username", username);
-            return "redirect:/mainPage";
+            return "redirect:/mainPage/news";
         } else {
             return "redirect:/";
         }
