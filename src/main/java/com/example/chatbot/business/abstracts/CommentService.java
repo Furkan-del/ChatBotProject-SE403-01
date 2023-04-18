@@ -5,13 +5,17 @@ import com.example.chatbot.entity.Comment;
 import java.util.List;
 
 public interface CommentService {
-    public List<Comment> getAllComments();
-    public Comment getCommentById(Long id);
+     List<Comment> getAllComments();
+     Comment getCommentById(Long id);
 
-    public void add(Comment comment);
+     void add(Comment comment);
 
-    public void delete(Comment comment);
+     void delete(Comment comment);
 
-    public void updateComment(Comment comment);
+     void updateComment(Comment comment);
+    void deleteCommentById(Long newId,Long commentId);
+    void postCommentById(Long commentId,Long newId);
+
+    Comment getCommentsById(Long commentId,Long newsId);
 
 }

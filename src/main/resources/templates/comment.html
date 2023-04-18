@@ -437,20 +437,24 @@
               </p>
               <p th:text="${comment.dates}">
               </p>
+
             </div>
-            <a class="button-comment"  th:href="@{mainPage/comments/delete/{id} (id=${comment.getId()})}">Delete</a>
-           </div>
+            <a class="button-comment"  th:href="@{http://localhost:8080/mainPage/news/delete/{id} (id=${comment.getId()})}">Delete</a>
+          <hr>
+          </div>
         </div>
       </div>
     </div>
     <div id="respond">
       <h3>Leave a Comment</h3>
-      <form method="post" id="commentform" th:action="@{/comments}" th:object="${commentsAll}">
+      <form method="post" id="commentform" th:action="@{http://localhost:8080/mainPage/news/{id} (id=${newsCommentForId.getId()})}" th:object="${commentsAll}">
         <label for="comment" class="required" style="margin-bottom: 15px">Your message</label>
         <input  id="comment" name="comment"  rows="10" required="required">
         <!--<input type="hidden"  name="userId" value="1">
         <input type="hidden" name="userName" value="Furkan Yaman">-->
+
         <button class="button">Submit Comment</button>
+
       </form>
     </div>
   </section>

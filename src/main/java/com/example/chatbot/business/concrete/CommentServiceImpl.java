@@ -8,6 +8,7 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -40,6 +41,35 @@ private final CommentRepository commentRepository;
     @Override
     public void updateComment(Comment comment) {
 
+    }
+
+    @Override
+    public void deleteCommentById(Long newId, Long commentId) {
+        Optional<Comment>comment=commentRepository.findById(commentId);
+        if(comment.isPresent()&& comment.get().getNews().getId().equals(newId)){
+            commentRepository.delete(comment.get());
+        }else{
+            System.out.println("Value is not present");
+        }
+    }
+
+    @Override
+    public void postCommentById(Long commentId, Long newId) {
+        Optional<Comment>comment=commentRepository.findById(commentId);
+        if(comment.isPresent()&&comment.get().getNews().getId().equals(newId)){
+            commentRepository.save(comment.get());
+        }
+
+    }
+
+    @Override
+    public Comment getCommentsById(Long commentId, Long newsId) {
+        Optional<Comment>comment=commentRepository.findById(commentId);
+        if(comment.isPresent()&&comment.get().getNews().getId().equals(newsId)){
+            return comment.get();
+        }else{
+            return null;
+        }
     }
 
 }

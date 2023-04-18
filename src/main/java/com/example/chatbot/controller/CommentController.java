@@ -22,13 +22,13 @@ public class CommentController {
     private final NewsServiceImpl newsService;
     @GetMapping("mainPage/comments")
     public String getAllComments(Model model) {
-        model.addAttribute("commentsAll", commentService.getAllComments());
+
        /* model.addAttribute("")
        */ return "comment";
     }
 
 
-    @PostMapping("/comments")
+    @PostMapping("mainPage/news/{id}")
     public String postComment(@ModelAttribute("commentsAll") Comment comment, @RequestParam("comment") String comments){
         comment.setComment(comments);
         Date currentDate = new Date();
@@ -38,18 +38,20 @@ public class CommentController {
         comment.setCommentType(answer);
         /* comment.setUserId(1L);*/
         commentService.add(comment);
-        return "redirect:/mainPage/comments";
+        return "redirect:/mainPage/comments/{id}";
     }
 
-    @GetMapping("mainPage/comments/delete/{id}")
+    @GetMapping("mainPage/news/delete/{id}")
     public String delete(@PathVariable Long id){
         Comment comment = commentService.getCommentById(id);
         commentService.delete(comment);
-        return "redirect:/comments";
+        return "redirect:/mainPage/comments/{id}";
     }
     @GetMapping("mainPage/comments/{id}")
     public String getShowCommentById(@PathVariable Long id,Model model){
         model.addAttribute("newsCommentForId",newsService.getNewsById(id));
+        model.addAttribute("commentsAll", commentService.getAllComments());
         return "comment";
     }
+
 }

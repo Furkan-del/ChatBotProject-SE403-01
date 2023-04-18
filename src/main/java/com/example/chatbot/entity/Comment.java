@@ -16,7 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "comment")
     private String comment;
@@ -30,5 +30,10 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+
+    @ManyToOne
+    @JoinColumn(name = "news_id")
+    private News news;
 
 }
