@@ -435,10 +435,10 @@
         <label class="modal__bg" for="modal-2"></label>
         <div class="modal__inner">
             <label class="modal__close" for="modal-2"></label>
-            <form th:action="@{/mainPage}" method="post">
+            <form th:action="@{http://localhost:8080/addContact}" method="post">
                 <h2>Contact Admins</h2>
-                <input type="text" placeholder="Enter Message Topic"/>
-                <input type="text" placeholder="Enter Message Content">
+                <input type="text" name="topic" placeholder="Enter Message Topic"/>
+                <input type="text" name="content" placeholder="Enter Message Content">
                 <button class="button" type="submit">Send</button>
 
             </form>
