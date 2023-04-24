@@ -37,7 +37,6 @@ public class NewsServiceImpl implements NewsService {
         news.setNewsContent(newsName);
         news.setNewsHeader(newsHeader);
         newsRepository.save(news);
-
     }
 
     @Override

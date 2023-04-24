@@ -27,7 +27,7 @@ public class User {
     @Column(name = "phoneNumber")
     private Integer phoneNumber;
 
-    @OneToMany(mappedBy = "user")
+  /*  @OneToMany(mappedBy = "user")
     private List<News> newsList;
-
+*/
 }

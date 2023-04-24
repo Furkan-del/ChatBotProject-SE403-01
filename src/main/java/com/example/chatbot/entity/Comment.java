@@ -27,13 +27,17 @@ public class Comment {
     @Column(name = "date")
     private String dates;
 
+/*
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+*/
 
+/*
 
     @ManyToOne
     @JoinColumn(name = "news_id")
     private News news;
+*/
 
 }

@@ -38,12 +38,12 @@ private final CommentRepository commentRepository;
           commentRepository.delete(comment);
     }
 
-    @Override
+ /*   @Override
     public void updateComment(Comment comment) {
 
     }
-
-    @Override
+*/
+    /*@Override
     public void deleteCommentById(Long newId, Long commentId) {
         Optional<Comment>comment=commentRepository.findById(commentId);
         if(comment.isPresent()&& comment.get().getNews().getId().equals(newId)){
@@ -52,17 +52,17 @@ private final CommentRepository commentRepository;
             System.out.println("Value is not present");
         }
     }
-
-    @Override
+*/
+/*    @Override
     public void postCommentById(Long commentId, Long newId) {
         Optional<Comment>comment=commentRepository.findById(commentId);
         if(comment.isPresent()&&comment.get().getNews().getId().equals(newId)){
             commentRepository.save(comment.get());
         }
 
-    }
+    }*/
 
-    @Override
+   /* @Override
     public Comment getCommentsById(Long commentId, Long newsId) {
         Optional<Comment>comment=commentRepository.findById(commentId);
         if(comment.isPresent()&&comment.get().getNews().getId().equals(newsId)){
@@ -70,6 +70,6 @@ private final CommentRepository commentRepository;
         }else{
             return null;
         }
-    }
+    }*/
 
 }

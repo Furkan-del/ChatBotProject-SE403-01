@@ -11,11 +11,11 @@ public interface CommentService {
      void add(Comment comment);
 
      void delete(Comment comment);
-
+/*
      void updateComment(Comment comment);
     void deleteCommentById(Long newId,Long commentId);
     void postCommentById(Long commentId,Long newId);
 
-    Comment getCommentsById(Long commentId,Long newsId);
+    Comment getCommentsById(Long commentId,Long newsId);*/
 
 }
