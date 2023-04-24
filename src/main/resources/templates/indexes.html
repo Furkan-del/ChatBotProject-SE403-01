@@ -373,7 +373,7 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
                 <label><p th:text="${session.username}">Username</p></label>
-                <label><a href="#contact">Contact Admins</a></label>
+                <label class="btn" for="modal-2"> <a>Contact Admins</a></label>
                 <label class="btn" for="modal-1"><a>Comment Inspector</a></label>
                 <label style="font-size:18px; position:absolute; right:0"><a id="getCurrentDate"></a></label>
             </ul>
@@ -428,6 +428,23 @@
             </form>
         </div>
     </div>
+
+
+    <input class="modal-state" id="modal-2" type="checkbox"/>
+    <div class="modal">
+        <label class="modal__bg" for="modal-2"></label>
+        <div class="modal__inner">
+            <label class="modal__close" for="modal-2"></label>
+            <form th:action="@{/mainPage}" method="post">
+                <h2>Contact Admins</h2>
+                <input type="text" placeholder="Enter Message Topic"/>
+                <input type="text" placeholder="Enter Message Content">
+                <button class="button" type="submit">Send</button>
+
+            </form>
+        </div>
+    </div>
+
 </div>
 
 <script>
