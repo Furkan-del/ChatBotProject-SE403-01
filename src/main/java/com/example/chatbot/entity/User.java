@@ -27,6 +27,13 @@ public class User {
     @Column(name = "phoneNumber")
     private Integer phoneNumber;
 
+    @OneToMany(mappedBy = "user")
+    private List<Contact>contactList;
+
+    public User(Long id){
+        this.id=id;
+    }
+
   /*  @OneToMany(mappedBy = "user")
     private List<News> newsList;
 */
