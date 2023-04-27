@@ -2,6 +2,7 @@ package com.example.chatbot.business.concrete;
 
 import com.example.chatbot.business.abstracts.CommentService;
 import com.example.chatbot.dataAccesLayer.CommentRepository;
+import com.example.chatbot.dataAccesLayer.NewsRepository;
 import com.example.chatbot.entity.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,7 +17,6 @@ import java.util.Optional;
 public class CommentServiceImpl implements CommentService {
     // dependecy Injection IOC Container is here active
 private final CommentRepository commentRepository;
-
     @Override
     public List<Comment> getAllComments() {
         return  commentRepository.findAll();
@@ -30,6 +30,7 @@ private final CommentRepository commentRepository;
 
     @Override
     public void add(Comment comment) {
+
         commentRepository.save(comment);
     }
 

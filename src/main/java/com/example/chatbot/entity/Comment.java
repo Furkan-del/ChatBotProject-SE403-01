@@ -33,11 +33,10 @@ public class Comment {
     private User user;
 */
 
-/*
+
 
     @ManyToOne
     @JoinColumn(name = "news_id")
     private News news;
-*/
 
 }

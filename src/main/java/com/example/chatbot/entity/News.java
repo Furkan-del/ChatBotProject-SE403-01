@@ -31,9 +31,9 @@ public class News {
 
     /*@ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;*//*
+    private User user; */
+
     @OneToMany(mappedBy = "news",cascade = CascadeType.ALL)
     private List<Comment> commentList=new ArrayList<>();
-*/
 
 }
