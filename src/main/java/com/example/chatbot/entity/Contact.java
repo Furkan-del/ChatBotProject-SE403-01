@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @AllArgsConstructor
@@ -25,6 +27,7 @@ public class Contact {
     @JoinColumn(name = "user_id",nullable = false)
     private User user;
 
-
+   @Column(name = "date")
+    private LocalDate date;
 
 }

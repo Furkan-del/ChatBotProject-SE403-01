@@ -40,10 +40,7 @@ public class CommentController {
         comment.setDates(df.format(currentDate));
         String answer = chatGptService.generateText(comments);
         comment.setCommentType(answer);
-        News news = newsService.getNewsById(id);
-        comment.setNews(news);
-        /* comment.setUserId(1L);*/
-        commentService.add(comment);
+        commentService.add(comment,id);
         return "redirect:/mainPage/comments/{id}";
     }
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 
 @Controller
 @AllArgsConstructor
@@ -29,8 +30,9 @@ public class ContactController {
        String userName=httpSession.getAttribute("username").toString();
        User user=userService.findByUsername(userName);
        contact.setUser(user);
+       contact.setDate( LocalDate.now());
         contactService.addContact(contact);
-
         return "redirect:http://localhost:8080/mainPage/news";
     }
+
 }

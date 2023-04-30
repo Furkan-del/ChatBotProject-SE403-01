@@ -4,9 +4,11 @@ import com.example.chatbot.business.abstracts.CommentService;
 import com.example.chatbot.dataAccesLayer.CommentRepository;
 import com.example.chatbot.dataAccesLayer.NewsRepository;
 import com.example.chatbot.entity.Comment;
+import com.example.chatbot.entity.News;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +19,8 @@ import java.util.Optional;
 public class CommentServiceImpl implements CommentService {
     // dependecy Injection IOC Container is here active
 private final CommentRepository commentRepository;
-    @Override
+private  final  NewsRepository newsRepository;
+@Override
     public List<Comment> getAllComments() {
         return  commentRepository.findAll();
     }
@@ -28,10 +31,19 @@ private final CommentRepository commentRepository;
 
     }
 
-    @Override
+  /*  @Override
     public void add(Comment comment) {
+        return null;
+    }
+*/
+    @Override
+    public void add(Comment comment,@PathVariable  Long id) {
+        News news=newsRepository.findById(id).orElseThrow();
+        comment.setNews(news);
 
         commentRepository.save(comment);
+
+
     }
 
     @Override

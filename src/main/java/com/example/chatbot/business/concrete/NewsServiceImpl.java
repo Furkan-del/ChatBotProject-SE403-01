@@ -1,10 +1,12 @@
 package com.example.chatbot.business.concrete;
 
 import com.example.chatbot.business.abstracts.NewsService;
+import com.example.chatbot.dataAccesLayer.CommentRepository;
 import com.example.chatbot.dataAccesLayer.NewsRepository;
 import com.example.chatbot.entity.News;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.attoparser.dom.Comment;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +22,7 @@ import java.util.List;
 public class NewsServiceImpl implements NewsService {
     private final NewsRepository newsRepository;
 
+    private final CommentRepository commentRepository;
 
     @Override
     public void saveNew(MultipartFile multipartFile, String newsName, String newsHeader) {
@@ -47,6 +50,14 @@ public class NewsServiceImpl implements NewsService {
     public News getNewsById(Long id) {
         News news=newsRepository.findById(id).orElseThrow();
         return news;
+    }
+
+    @Override
+    public void saveCommentList(List<Comment> comments, Long id) {
+        News news=newsRepository.findById(id).orElseThrow();
+        for (Comment comment :comments){
+
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.chatbot.business.abstracts;
 
 import com.example.chatbot.entity.News;
+import org.attoparser.dom.Comment;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
@@ -12,4 +13,5 @@ public interface NewsService {
 
      List<News> getAllNews();
      News getNewsById(Long id);
+     public void saveCommentList(List<Comment> comments,Long id);
 }
