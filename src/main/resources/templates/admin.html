@@ -428,20 +428,20 @@
             <div class="col-lg-12" style="width: 500px;">
                 <h1 class="page-header">Review User Comments</h1>
             </div>
-            <div style="background: #dcdcdc;padding:15px;"><!--TODO:  This div will be th:each -->
+            <div style="background: #dcdcdc;padding:15px;" th:each="contacts: ${allContacts}">
                 <div>
-                    <label>Message Topic</label>
+                    <label th:text="${contacts.topic}">Message Topic</label>
                 </div>
 
                 <div>
-                    <label>Message Content</label>
+                    <label th:text="${contacts.content}">Message Content</label>
                 </div>
                 <div>
-                    <label>By <a class="url fn" href="#">Çağıl Erser</a> -</label>
-                    <label>Message Date</label>
+                    <label>By <a class="url fn" href="#" th:text="${session.username}">Çağıl Erser</a> -</label>
+                    <label th:text="${contacts.date}">Message Date</label>
                 </div>
                 <div>
-                    <button class="buttonMessages" style="">Delete Message</button>
+                    <a class="buttonMessages"  th:href="@{/admin/contacts/{id} (id=${contacts.getId()}) }" >Delete Message</a>
                 </div>
                 <hr>
             </div>

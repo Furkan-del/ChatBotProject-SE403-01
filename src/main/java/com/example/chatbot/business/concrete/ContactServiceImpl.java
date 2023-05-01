@@ -29,4 +29,10 @@ public class ContactServiceImpl implements ContactService {
         return contactRepository.findAll();
     }
 
+    @Override
+    public void deleteById(Long id) {
+        Contact contact = contactRepository.findById(id).orElseThrow();
+        contactRepository.delete(contact);
+    }
+
 }

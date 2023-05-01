@@ -9,4 +9,5 @@ public interface ContactService {
     void addContact(Contact contact);
 
     List<Contact> getAll();
+    void deleteById(Long id);
 }

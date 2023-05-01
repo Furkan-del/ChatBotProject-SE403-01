@@ -7,6 +7,7 @@ import com.example.chatbot.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,9 +31,10 @@ public class ContactController {
        String userName=httpSession.getAttribute("username").toString();
        User user=userService.findByUsername(userName);
        contact.setUser(user);
-       contact.setDate( LocalDate.now());
+       contact.setDate(LocalDate.now());
         contactService.addContact(contact);
         return "redirect:http://localhost:8080/mainPage/news";
     }
+
 
 }
