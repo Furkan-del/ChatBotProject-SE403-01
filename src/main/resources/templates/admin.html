@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js%22%3E"></script>
 <head th:fragment="head">
     <meta charset="utf-8">
@@ -289,6 +289,25 @@
             background-color: #555555;
             color: white;
         }
+        .buttonMessages{
+
+            padding: 5px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition-duration: 0.6s;
+            cursor: pointer;
+            background-color: white;
+            margin-top: 25px;
+            color: black;
+            border: 2px solid #555555;
+            width: 100%;
+        }
+        .buttonMessages:hover{
+            background-color: #555555;
+            color: white;
+        }
 
         /* Input
          * =============================== */
@@ -372,17 +391,17 @@
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <label><p th:text="${session.username}">Username</p></label>
+                <label><p th:text="${session.adminName}">Username</p></label>
                 <label style="font-size:18px; position:absolute; right:0"><a id="getCurrentDate"></a></label>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container" style="margin-top:25px;">
-    <div class="row">
+<div class="container" style="margin-top:25px;display: flex;">
+    <div class="row"style="width: 3000px;">
         <div class="col-lg-12">
-            <h1 class="page-header">OpinionMate: <small>The new era of stating your opinions</small></h1>
+            <h1 class="page-header">Share News Articles to Feed</h1>
         </div>
     <div>
     <form method="post" th:action="@{/addNew}"  enctype="multipart/form-data">
@@ -403,8 +422,32 @@
     </form>
     </div>
     </div>
-    <hr>
 
+
+    <div class="row" style="border-left: 3px solid gray;height: 500px;left: 50%;top: 0;margin-left: 20px;padding-left: 20px;">
+            <div class="col-lg-12" style="width: 500px;">
+                <h1 class="page-header">Review User Comments</h1>
+            </div>
+            <div style="background: #dcdcdc;padding:15px;" th:each="contacts: ${allContacts}">
+                <div>
+                    <label th:text="${contacts.topic}">Message Topic</label>
+                </div>
+
+                <div>
+                    <label th:text="${contacts.content}">Message Content</label>
+                </div>
+                <div>
+                    <label>By <a class="url fn" href="#" th:text="${session.username}">Çağıl Erser</a> -</label>
+                    <label th:text="${contacts.date}">Message Date</label>
+                </div>
+                <div>
+                    <a class="buttonMessages"  th:href="@{/admin/contacts/{id} (id=${contacts.getId()}) }" >Delete Message</a>
+                </div>
+                <hr>
+            </div>
+        </div>
+
+    <hr>
 </div>
 
 <div class="container">

@@ -15,7 +15,7 @@ import java.util.List;
 @Data
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "userName", unique = true)
@@ -28,6 +28,13 @@ public class User {
     private Integer phoneNumber;
 
     @OneToMany(mappedBy = "user")
-    private List<News> newsList;
+    private List<Contact>contactList;
 
+    public User(Long id){
+        this.id=id;
+    }
+
+  /*  @OneToMany(mappedBy = "user")
+    private List<News> newsList;
+*/
 }

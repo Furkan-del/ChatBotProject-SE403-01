@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Table(name = "News")
@@ -15,7 +17,7 @@ import java.util.Date;
 @Entity
 public class News {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "newsContent")
     private String newsContent;
@@ -27,8 +29,11 @@ public class News {
     @Lob
     private String photo;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "user_id")
-    private User user;
+    private User user; */
+
+    @OneToMany(mappedBy = "news",cascade = CascadeType.ALL)
+    private List<Comment> commentList;
 
 }

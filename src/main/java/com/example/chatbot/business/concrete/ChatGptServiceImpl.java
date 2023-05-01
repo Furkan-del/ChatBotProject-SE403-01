@@ -2,8 +2,6 @@ package com.example.chatbot.business.concrete;
 
 import com.example.chatbot.business.abstracts.ChatGptService;
 import com.example.chatbot.chatGptApi.ChatGptRequest;
-import com.example.chatbot.dataAccesLayer.CommentRepository;
-import com.example.chatbot.entity.Comment;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
@@ -11,7 +9,6 @@ import lombok.Data;
 import org.springframework.http.*;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.client.RestTemplate;
 
 @Service
