@@ -17,7 +17,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "userName", unique = true)
     private String userName;
     @Column(name = "email")
@@ -26,12 +25,11 @@ public class User {
     private String password;
     @Column(name = "phoneNumber")
     private Integer phoneNumber;
-
     @OneToMany(mappedBy = "user")
-    private List<Contact>contactList;
+    private List<Contact> contactList;
 
-    public User(Long id){
-        this.id=id;
+    public User(Long id) {
+        this.id = id;
     }
 
   /*  @OneToMany(mappedBy = "user")

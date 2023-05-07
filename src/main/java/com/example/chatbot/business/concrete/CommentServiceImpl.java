@@ -10,6 +10,7 @@ import lombok.Data;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,22 +29,11 @@ private  final  NewsRepository newsRepository;
     @Override
     public Comment getCommentById(Long id) {
         return  commentRepository.findById(id).orElseThrow();
-
     }
 
-  /*  @Override
-    public void add(Comment comment) {
-        return null;
-    }
-*/
     @Override
-    public void add(Comment comment,@PathVariable  Long id) {
-        News news=newsRepository.findById(id).orElseThrow();
-        comment.setNews(news);
-
+    public void add(Comment comment) {
         commentRepository.save(comment);
-
-
     }
 
     @Override
@@ -51,11 +41,7 @@ private  final  NewsRepository newsRepository;
           commentRepository.delete(comment);
     }
 
- /*   @Override
-    public void updateComment(Comment comment) {
 
-    }
-*/
     /*@Override
     public void deleteCommentById(Long newId, Long commentId) {
         Optional<Comment>comment=commentRepository.findById(commentId);
@@ -73,16 +59,6 @@ private  final  NewsRepository newsRepository;
             commentRepository.save(comment.get());
         }
 
-    }*/
-
-   /* @Override
-    public Comment getCommentsById(Long commentId, Long newsId) {
-        Optional<Comment>comment=commentRepository.findById(commentId);
-        if(comment.isPresent()&&comment.get().getNews().getId().equals(newsId)){
-            return comment.get();
-        }else{
-            return null;
-        }
     }*/
 
 }

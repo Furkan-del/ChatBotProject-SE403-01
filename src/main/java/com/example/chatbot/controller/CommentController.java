@@ -11,9 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 @Controller
 @Data
@@ -30,17 +32,22 @@ public class CommentController {
          */
         return "comment";
     }
-
-
     @PostMapping("mainPage/news/{id}")
-    public String postComment(@ModelAttribute("commentsAll") Comment comment, @RequestParam("comment") String comments, @PathVariable Long id) {
-        comment.setComment(comments);
-        Date currentDate = new Date();
-        DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-        comment.setDates(df.format(currentDate));
-        String answer = chatGptService.generateText(comments);
-        comment.setCommentType(answer);
-        commentService.add(comment,id);
+    public String postComment( @RequestParam("comment") String comments, @PathVariable Long id) {
+        News news = newsService.getNewsById(id);
+        if (news != null) {
+            Comment comment1=new Comment();
+            comment1.setComment(comments);
+            Date currentDate = new Date();
+            DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+            comment1.setDates(df.format(currentDate));
+            String answer = chatGptService.generateText(comments);
+            comment1.setCommentType(answer);
+            comment1.setNews(news);
+            commentService.add(comment1);
+        }
+
+
         return "redirect:/mainPage/comments/{id}";
     }
 

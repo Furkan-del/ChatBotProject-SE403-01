@@ -13,5 +13,5 @@ public interface NewsService {
 
      List<News> getAllNews();
      News getNewsById(Long id);
-     public void saveCommentList(List<Comment> comments,Long id);
+
 }

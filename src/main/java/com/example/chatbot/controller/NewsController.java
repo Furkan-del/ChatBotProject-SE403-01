@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -32,6 +33,7 @@ public class NewsController {
     @GetMapping("/mainPage/news")
     public String getAllNew(Model model) {
         List<News> newsList = newsService.getAllNews();
+
         model.addAttribute("newImageList", newsList);
         return "indexes";
     }
