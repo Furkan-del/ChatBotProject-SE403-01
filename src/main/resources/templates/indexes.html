@@ -393,7 +393,7 @@
 
         <div th:each="image: ${newImageList}">
             <a ><img class="img-responsive" th:src="'data:images/png;base64,' + ${image.photo}"></a>
-            <h3><a th:text="${image.newsHeader}" th:href="@{http://localhost:8080/mainPage/comments/{id} (id=${image.getId()})}">ChatGPT started a new kind of AI race and made text boxes cool
+            <h3><a th:text="${image.newsHeader}" th:href="@{http://localhost:8080/mainPage/news/{id}/comments (id=${image.getId()})}">ChatGPT started a new kind of AI race and made text boxes cool
                 again</a></h3>
             <p th:text="${image.newsContent}">Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest
                 innovation?</p>

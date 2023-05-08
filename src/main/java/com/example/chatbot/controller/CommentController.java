@@ -7,6 +7,7 @@ import com.example.chatbot.entity.Comment;
 import com.example.chatbot.entity.News;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +33,8 @@ public class CommentController {
         return "comment";
     }
 
-    @PostMapping("mainPage/news/{id}")
-    public String postComment(@RequestParam("comment") String comments, @PathVariable Long id) {
+    @PostMapping("mainPage/news/{id}/postComment")
+    public String postComment(@RequestParam("comment") String comments, @PathVariable("id") Long id) {
         News news = newsService.getNewsById(id);
         if (news != null) {
             Comment comment1 = new Comment();
@@ -46,22 +47,18 @@ public class CommentController {
             comment1.setNews(news);
             commentService.add(comment1);
         }
-
-
-        return "redirect:/mainPage/comments/{id}";
+        return "redirect:/mainPage/news/{id}/comments";
     }
 
-    @GetMapping("mainPage/news/delete/{id}")
-    public String delete(@PathVariable Long id) {
-
-        Comment comment = commentService.getCommentById(id);
+    @GetMapping("mainPage/news/{newsId}/delete/{commentId}")
+    public String delete(@PathVariable(name = "newsId") Long newsId ,@PathVariable("commentId") Long commentId) {
+        Comment comment = commentService.getCommentById(commentId);
         commentService.delete(comment);
-        return "redirect:/mainPage/comments/" +idForSomeOperation;
+        return "redirect:/mainPage/news/"+newsId+"/comments";
     }
 
-    @GetMapping("mainPage/comments/{id}")
-    public String getShowCommentById(@PathVariable Long id, Model model) {
-        idForSomeOperation =id;
+    @GetMapping("mainPage/news/{id}/comments")
+    public String getShowCommentById(@PathVariable("id") Long id, @NotNull Model model) {
         model.addAttribute("newsCommentForId", newsService.getNewsById(id));
         model.addAttribute("commentsAll", newsService.getNewsById(id).getCommentList());
         return "comment";
