@@ -10,8 +10,6 @@ import lombok.Data;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,22 +19,24 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class CommentController {
+    static Long idForSomeOperation;
     private final CommentServiceImpl commentService;
     private final ChatGptServiceImpl chatGptService;
     private final NewsServiceImpl newsService;
 
     @GetMapping("mainPage/comments")
-    public String getAllComments(Model model) {
+    public String getAllComments() {
 
         /* model.addAttribute("")
          */
         return "comment";
     }
+
     @PostMapping("mainPage/news/{id}")
-    public String postComment( @RequestParam("comment") String comments, @PathVariable Long id) {
+    public String postComment(@RequestParam("comment") String comments, @PathVariable Long id) {
         News news = newsService.getNewsById(id);
         if (news != null) {
-            Comment comment1=new Comment();
+            Comment comment1 = new Comment();
             comment1.setComment(comments);
             Date currentDate = new Date();
             DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
@@ -53,13 +53,15 @@ public class CommentController {
 
     @GetMapping("mainPage/news/delete/{id}")
     public String delete(@PathVariable Long id) {
+
         Comment comment = commentService.getCommentById(id);
         commentService.delete(comment);
-        return "redirect:/mainPage/comments/{id}";
+        return "redirect:/mainPage/comments/" +idForSomeOperation;
     }
 
     @GetMapping("mainPage/comments/{id}")
     public String getShowCommentById(@PathVariable Long id, Model model) {
+        idForSomeOperation =id;
         model.addAttribute("newsCommentForId", newsService.getNewsById(id));
         model.addAttribute("commentsAll", newsService.getNewsById(id).getCommentList());
         return "comment";
