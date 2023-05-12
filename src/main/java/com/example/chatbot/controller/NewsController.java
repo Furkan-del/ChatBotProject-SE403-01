@@ -33,7 +33,6 @@ public class NewsController {
     @GetMapping("/mainPage/news")
     public String getAllNew(Model model) {
         List<News> newsList = newsService.getAllNews();
-
         model.addAttribute("newImageList", newsList);
         return "indexes";
     }

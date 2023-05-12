@@ -4,31 +4,27 @@ import com.example.chatbot.business.abstracts.CommentService;
 import com.example.chatbot.dataAccesLayer.CommentRepository;
 import com.example.chatbot.dataAccesLayer.NewsRepository;
 import com.example.chatbot.entity.Comment;
-import com.example.chatbot.entity.News;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 @Data
 public class CommentServiceImpl implements CommentService {
     // dependecy Injection IOC Container is here active
-private final CommentRepository commentRepository;
-private  final  NewsRepository newsRepository;
-@Override
+    private final CommentRepository commentRepository;
+    private final NewsRepository newsRepository;
+
+    @Override
     public List<Comment> getAllComments() {
-        return  commentRepository.findAll();
+        return commentRepository.findAll();
     }
 
     @Override
     public Comment getCommentById(Long id) {
-        return  commentRepository.findById(id).orElseThrow();
+        return commentRepository.findById(id).orElseThrow();
     }
 
     @Override
@@ -38,7 +34,29 @@ private  final  NewsRepository newsRepository;
 
     @Override
     public void delete(Comment comment) {
-          commentRepository.delete(comment);
+        commentRepository.delete(comment);
+    }
+
+    @Override
+    public double calculateRate(List<Comment> comments) {
+        comments = commentRepository.findAll();
+        double counterPositive = 0;
+        double counterNegative = 0;
+        double rate ;
+        String commentType;
+        for (int i = 0; i < comments.size(); i++) {
+            commentType = comments.get(i).getCommentType();
+            if (commentType.equals("\n\nNegative")) {
+                counterNegative += 1.0;
+            } else {
+                counterPositive += 1.0;
+            }
+        }
+        rate = (counterPositive / (counterPositive+counterNegative)) * 100;
+        if(rate==0){
+            rate=0;
+        }
+        return rate;
     }
 
 

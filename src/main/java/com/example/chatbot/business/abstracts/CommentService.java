@@ -12,4 +12,6 @@ public interface CommentService {
      void delete(Comment comment);
 
 
+     double calculateRate(List<Comment> comments);
+
 }

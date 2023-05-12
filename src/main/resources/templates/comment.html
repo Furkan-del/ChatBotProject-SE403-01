@@ -438,6 +438,7 @@
               <p th:text="${comment.dates}">
               </p>
 
+
             </div>
             <a class="button-comment"  th:href="@{http://localhost:8080/mainPage/news/{newsId}/delete/{commentId} (newsId=${newsCommentForId.getId()},commentId=${comment.getId()})}">Delete</a>
           <hr>
@@ -467,7 +468,8 @@
     <div class="row">
       <div class="col-lg-12">
         <p>Copyright &copy; OpinionMate <span id="getCurrentYear"></span></p>
-
+        <p th:text="${rate}"></p>
+       <p>  </p>
       </div>
     </div>
   </footer>

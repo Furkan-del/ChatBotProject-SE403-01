@@ -11,6 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,7 +21,8 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class CommentController {
-    static Long idForSomeOperation;
+
+    static double rate;
     private final CommentServiceImpl commentService;
     private final ChatGptServiceImpl chatGptService;
     private final NewsServiceImpl newsService;
@@ -35,6 +37,7 @@ public class CommentController {
 
     @PostMapping("mainPage/news/{id}/postComment")
     public String postComment(@RequestParam("comment") String comments, @PathVariable("id") Long id) {
+
         News news = newsService.getNewsById(id);
         if (news != null) {
             Comment comment1 = new Comment();
@@ -46,21 +49,23 @@ public class CommentController {
             comment1.setCommentType(answer);
             comment1.setNews(news);
             commentService.add(comment1);
+            rate=commentService.calculateRate(commentService.getAllComments());
         }
         return "redirect:/mainPage/news/{id}/comments";
     }
 
     @GetMapping("mainPage/news/{newsId}/delete/{commentId}")
-    public String delete(@PathVariable(name = "newsId") Long newsId ,@PathVariable("commentId") Long commentId) {
+    public String delete(@PathVariable(name = "newsId") Long newsId, @PathVariable("commentId") Long commentId) {
         Comment comment = commentService.getCommentById(commentId);
         commentService.delete(comment);
-        return "redirect:/mainPage/news/"+newsId+"/comments";
+        return "redirect:/mainPage/news/" + newsId + "/comments";
     }
 
     @GetMapping("mainPage/news/{id}/comments")
     public String getShowCommentById(@PathVariable("id") Long id, @NotNull Model model) {
         model.addAttribute("newsCommentForId", newsService.getNewsById(id));
         model.addAttribute("commentsAll", newsService.getNewsById(id).getCommentList());
+        model.addAttribute("rate",rate);
         return "comment";
     }
 

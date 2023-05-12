@@ -33,4 +33,5 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "news_id")
     private News news;
+
 }

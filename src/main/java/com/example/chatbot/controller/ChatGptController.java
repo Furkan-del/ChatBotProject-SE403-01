@@ -16,10 +16,7 @@ public class ChatGptController {
     private final String API_KEY = "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";
     private final String API_URL = "https://api.openai.com/v1/completions";
 
-    @GetMapping("/mainPage")
-    public String showPage() {
-        return "indexes";
-    }
+
 
     @PostMapping("/mainPage")
     public String generateText(Model model, @RequestParam("prompt") String prompt) {
@@ -41,7 +38,7 @@ public class ChatGptController {
             e.printStackTrace();
         }
         /* model.addAttribute("response", responseAnswer);*/
-        return "indexes";
+        return "redirect:/mainPage/news";
     }
 
 }
