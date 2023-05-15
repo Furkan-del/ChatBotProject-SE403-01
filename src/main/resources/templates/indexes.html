@@ -398,7 +398,8 @@
             <p th:text="${image.newsContent}">Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest
                 innovation?</p>
             <div id="positivityDiv" th:style="'border: 5px solid; width: 10.5%; border-color: ' + (${positivityPercentage} < 50 ? 'red' : 'green')">
-                <label>Positivity: <span th:text="${positivityPercentage}"></span>%</label>
+                <label style="display: inline-block; padding: 5px; border-right: 1px solid;">Positivity: </label>
+                <span th:text="${positivityPercentage}" style="display: inline-block; padding: 5px;"></span>%
             </div>
 
 
