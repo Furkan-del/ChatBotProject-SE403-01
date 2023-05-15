@@ -34,6 +34,7 @@ public class NewsController {
     public String getAllNew(Model model) {
         List<News> newsList = newsService.getAllNews();
         model.addAttribute("newImageList", newsList);
+
         return "indexes";
     }
 

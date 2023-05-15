@@ -3,12 +3,9 @@ package com.example.chatbot.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.util.Date;
+
 
 @Entity
 @Table(name = "comments")
@@ -16,6 +13,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Comment {
+
+    public static double rate;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,5 +32,6 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "news_id")
     private News news;
+
 
 }

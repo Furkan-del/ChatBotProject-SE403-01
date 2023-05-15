@@ -7,6 +7,7 @@ import com.example.chatbot.entity.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -16,6 +17,7 @@ public class CommentServiceImpl implements CommentService {
     // dependecy Injection IOC Container is here active
     private final CommentRepository commentRepository;
     private final NewsRepository newsRepository;
+    private final NewsServiceImpl newsService;
 
     @Override
     public List<Comment> getAllComments() {
@@ -38,11 +40,12 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public double calculateRate(List<Comment> comments) {
-        comments = commentRepository.findAll();
+    public double calculateRate(Long id) {
+        List<Comment> comments;
+        comments = newsService.getNewsById(id).getCommentList();
         double counterPositive = 0;
         double counterNegative = 0;
-        double rate ;
+        double rate;
         String commentType;
         for (int i = 0; i < comments.size(); i++) {
             commentType = comments.get(i).getCommentType();
@@ -52,9 +55,11 @@ public class CommentServiceImpl implements CommentService {
                 counterPositive += 1.0;
             }
         }
-        rate = (counterPositive / (counterPositive+counterNegative)) * 100;
-        if(rate==0){
-            rate=0;
+        rate = (counterPositive / (counterPositive + counterNegative)) * 100;
+        if (Double.isNaN(rate)) {
+            rate = 0;
+        } else if (rate == 0) {
+            rate = 0;
         }
         return rate;
     }

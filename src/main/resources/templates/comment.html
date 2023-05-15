@@ -414,7 +414,7 @@
     <a href="#project-link"><img class="img-responsive" th:src="'data:images/png;base64,' + ${newsCommentForId.photo}"></a>
     <h3><a th:text="${newsCommentForId.newsHeader}">ChatGPT started a new kind of AI race and made text boxes cool again</a></h3>
     <p th:text="${newsCommentForId.newsContent}">Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest innovation?</p>
-    <div id="positivityDiv" th:style="'border: 5px solid; width: 15.5%; border-color: ' + (${positivityPercentage} < 50 ? 'red' : 'green')">
+    <div id="positivityDiv" th:style="'border: 3px solid; width: 25.5%; border-color: ' + (${positivityPercentage.intValue()} < 50 ? 'red' : 'green')">
       <label>Positivity: <span th:text="${positivityPercentage}"></span>%</label>
     </div>
 
@@ -472,7 +472,6 @@
     <div class="row">
       <div class="col-lg-12">
         <p>Copyright &copy; OpinionMate <span id="getCurrentYear"></span></p>
-        <p th:text="${rate}"></p>
        <p>  </p>
       </div>
     </div>
@@ -498,9 +497,9 @@
 <script src="js/bootstrap.js"></script>
 <script type="text/javascript">
   const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  var dt = new Date();
-  document.getElementById('getCurrentYear').innerHTML = dt.getFullYear();
-  var date = dt.getDate() + "/" + dt.getMonth() + "/" + dt.getFullYear() + " " + weekdays[dt.getDay()];
+   dt = new Date();
+  document.getElementById('getCurrentYear').innerHTML = dt.getFullYear().toString();
+   date = dt.getDate() + "/" + dt.getMonth() + "/" + dt.getFullYear() + " " + weekdays[dt.getDay()];
   document.getElementById('getCurrentDate').innerHTML = date;
   document.getElementById('commentDat').innerHTML = date;
 </script>

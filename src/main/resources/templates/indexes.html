@@ -397,10 +397,10 @@
                 again</a></h3>
             <p th:text="${image.newsContent}">Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest
                 innovation?</p>
-            <div id="positivityDiv" th:style="'border: 5px solid; width: 15.5%; border-color: ' + (${positivityPercentage} < 50 ? 'red' : 'green')">
-                <label>Positivity: <span th:text="${positivityPercentage}"></span>%</label>
+            <!--<div id="positivityDiv" th:style="'border: 5px solid; width: 15.5%; border-color: ' + (${newsPercentage} < 50 ? 'red' : 'green')">
+                <label>Positivity: <span th:text="${newsPercentage}"></span>%</label>
             </div>
-
+-->
 
 
             <hr>
@@ -456,7 +456,7 @@
 <script>
     const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     let dt = new Date();
-    document.getElementById('getCurrentYear').innerHTML = dt.getFullYear();
+    document.getElementById('getCurrentYear').innerHTML = dt.getFullYear().toString();
     document.getElementById('getCurrentDate').innerHTML = dt.getDate() + "/" + dt.getMonth() + "/" + dt.getFullYear() + " " + weekdays[dt.getDay()];
 </script>
 

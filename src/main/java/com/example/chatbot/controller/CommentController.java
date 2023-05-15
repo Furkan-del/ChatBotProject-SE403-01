@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -46,23 +47,24 @@ public class CommentController {
             comment1.setCommentType(answer);
             comment1.setNews(news);
             commentService.add(comment1);
-            rate=commentService.calculateRate(commentService.getAllComments());
+
         }
         return "redirect:/mainPage/news/{id}/comments";
     }
-
+    
     @GetMapping("mainPage/news/{newsId}/delete/{commentId}")
     public String delete(@PathVariable(name = "newsId") Long newsId, @PathVariable("commentId") Long commentId) {
         Comment comment = commentService.getCommentById(commentId);
         commentService.delete(comment);
         return "redirect:/mainPage/news/" + newsId + "/comments";
+
     }
 
     @GetMapping("mainPage/news/{id}/comments")
     public String getShowCommentById(@PathVariable("id") Long id, @NotNull Model model) {
         model.addAttribute("newsCommentForId", newsService.getNewsById(id));
         model.addAttribute("commentsAll", newsService.getNewsById(id).getCommentList());
-        model.addAttribute("rate",rate);
+        model.addAttribute("positivityPercentage",Math.round(commentService.calculateRate(id) * 10) / 10.0);
         return "comment";
     }
 

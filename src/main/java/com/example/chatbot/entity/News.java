@@ -28,5 +28,5 @@ public class News {
     private User user; */
     @OneToMany(mappedBy = "news", cascade = CascadeType.ALL)
     private List<Comment> commentList;
-    
+
 }
