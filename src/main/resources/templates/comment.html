@@ -414,6 +414,9 @@
     <a href="#project-link"><img class="img-responsive" th:src="'data:images/png;base64,' + ${newsCommentForId.photo}"></a>
     <h3><a th:text="${newsCommentForId.newsHeader}">ChatGPT started a new kind of AI race and made text boxes cool again</a></h3>
     <p th:text="${newsCommentForId.newsContent}">Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest innovation?</p>
+    <div id="positivityDiv" th:style="'border: 5px solid; width: 10.5%; border-color: ' + (${positivityPercentage} < 50 ? 'red' : 'green')">
+      <label>Positivity: <span th:text="${positivityPercentage}"></span>%</label>
+    </div>
   </div>
 
 
