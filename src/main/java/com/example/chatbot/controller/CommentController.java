@@ -29,15 +29,12 @@ public class CommentController {
 
     @GetMapping("mainPage/comments")
     public String getAllComments() {
-
-        /* model.addAttribute("")
-         */
+        /* model.addAttribute("")*/
         return "comment";
     }
 
     @PostMapping("mainPage/news/{id}/postComment")
     public String postComment(@RequestParam("comment") String comments, @PathVariable("id") Long id) {
-
         News news = newsService.getNewsById(id);
         if (news != null) {
             Comment comment1 = new Comment();
