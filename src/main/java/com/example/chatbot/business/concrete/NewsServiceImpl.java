@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -22,13 +23,11 @@ import java.util.List;
 public class NewsServiceImpl implements NewsService {
     private final NewsRepository newsRepository;
 
-    private final CommentRepository commentRepository;
-
     @Override
     public void saveNew(MultipartFile multipartFile, String newsName, String newsHeader) {
-        News news=new News();
-        String fileName= StringUtils.cleanPath(multipartFile.getOriginalFilename()); //dosya adını temizler kaydeder
-        if(fileName.contains("..")){
+        News news = new News();
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename()); //dosya adını temizler kaydeder
+        if (fileName.contains("..")) {
             System.out.println("Not a valid file");
         }
         try {
@@ -48,16 +47,8 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public News getNewsById(Long id) {
-        News news=newsRepository.findById(id).orElseThrow();
-        return news;
+        return newsRepository.findById(id).orElseThrow();
     }
 
-    @Override
-    public void saveCommentList(List<Comment> comments, Long id) {
-        News news=newsRepository.findById(id).orElseThrow();
-        for (Comment comment :comments){
-
-        }
-    }
 
 }

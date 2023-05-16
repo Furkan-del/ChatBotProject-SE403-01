@@ -4,58 +4,67 @@ import com.example.chatbot.business.abstracts.CommentService;
 import com.example.chatbot.dataAccesLayer.CommentRepository;
 import com.example.chatbot.dataAccesLayer.NewsRepository;
 import com.example.chatbot.entity.Comment;
-import com.example.chatbot.entity.News;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 @Data
 public class CommentServiceImpl implements CommentService {
     // dependecy Injection IOC Container is here active
-private final CommentRepository commentRepository;
-private  final  NewsRepository newsRepository;
-@Override
+    private final CommentRepository commentRepository;
+    private final NewsRepository newsRepository;
+    private final NewsServiceImpl newsService;
+
+    @Override
     public List<Comment> getAllComments() {
-        return  commentRepository.findAll();
+        return commentRepository.findAll();
     }
 
     @Override
     public Comment getCommentById(Long id) {
-        return  commentRepository.findById(id).orElseThrow();
-
+        return commentRepository.findById(id).orElseThrow();
     }
 
-  /*  @Override
-    public void add(Comment comment) {
-        return null;
-    }
-*/
     @Override
-    public void add(Comment comment,@PathVariable  Long id) {
-        News news=newsRepository.findById(id).orElseThrow();
-        comment.setNews(news);
-
+    public void add(Comment comment) {
         commentRepository.save(comment);
-
-
     }
 
     @Override
     public void delete(Comment comment) {
-          commentRepository.delete(comment);
+        commentRepository.delete(comment);
     }
 
- /*   @Override
-    public void updateComment(Comment comment) {
-
+    @Override
+    public double calculateRate(Long id) {
+        List<Comment> comments;
+        comments = newsService.getNewsById(id).getCommentList();
+        double counterPositive = 0;
+        double counterNegative = 0;
+        double rate;
+        String commentType;
+        for (int i = 0; i < comments.size(); i++) {
+            commentType = comments.get(i).getCommentType();
+            if (commentType.equals("\n\nNegative")) {
+                counterNegative += 1.0;
+            } else {
+                counterPositive += 1.0;
+            }
+        }
+        rate = (counterPositive / (counterPositive + counterNegative)) * 100;
+        if (Double.isNaN(rate)) {
+            rate = 0;
+        } else if (rate == 0) {
+            rate = 0;
+        }
+        return rate;
     }
-*/
+
+
     /*@Override
     public void deleteCommentById(Long newId, Long commentId) {
         Optional<Comment>comment=commentRepository.findById(commentId);
@@ -73,16 +82,6 @@ private  final  NewsRepository newsRepository;
             commentRepository.save(comment.get());
         }
 
-    }*/
-
-   /* @Override
-    public Comment getCommentsById(Long commentId, Long newsId) {
-        Optional<Comment>comment=commentRepository.findById(commentId);
-        if(comment.isPresent()&&comment.get().getNews().getId().equals(newsId)){
-            return comment.get();
-        }else{
-            return null;
-        }
     }*/
 
 }

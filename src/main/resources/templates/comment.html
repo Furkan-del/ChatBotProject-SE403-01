@@ -414,6 +414,10 @@
     <a href="#project-link"><img class="img-responsive" th:src="'data:images/png;base64,' + ${newsCommentForId.photo}"></a>
     <h3><a th:text="${newsCommentForId.newsHeader}">ChatGPT started a new kind of AI race and made text boxes cool again</a></h3>
     <p th:text="${newsCommentForId.newsContent}">Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest innovation?</p>
+    <div id="positivityDiv" th:style="'border: 3px solid; width: 25.5%; border-color: ' + (${positivityPercentage.intValue()} < 50 ? 'red' : 'green')">
+      <label>Positivity: <span th:text="${positivityPercentage}"></span>%</label>
+    </div>
+
   </div>
 
 
@@ -438,8 +442,9 @@
               <p th:text="${comment.dates}">
               </p>
 
+
             </div>
-            <a class="button-comment"  th:href="@{http://localhost:8080/mainPage/news/delete/{id} (id=${comment.getId()})}">Delete</a>
+            <a class="button-comment"  th:href="@{http://localhost:8080/mainPage/news/{newsId}/delete/{commentId} (newsId=${newsCommentForId.getId()},commentId=${comment.getId()})}">Delete</a>
           <hr>
           </div>
         </div>
@@ -447,7 +452,7 @@
     </div>
     <div id="respond">
       <h3>Leave a Comment</h3>
-      <form method="post" id="commentform" th:action="@{http://localhost:8080/mainPage/news/{id} (id=${newsCommentForId.getId()})}" th:object="${commentsAll}">
+      <form method="post" id="commentform" th:action="@{http://localhost:8080/mainPage/news/{id}/postComment (id=${newsCommentForId.getId()})}" th:object="${commentsAll}">
         <label for="comment" class="required" style="margin-bottom: 15px">Your message</label>
         <input  id="comment" name="comment"  rows="10" required="required">
         <!--<input type="hidden"  name="userId" value="1">
@@ -467,7 +472,7 @@
     <div class="row">
       <div class="col-lg-12">
         <p>Copyright &copy; OpinionMate <span id="getCurrentYear"></span></p>
-
+       <p>  </p>
       </div>
     </div>
   </footer>
@@ -492,9 +497,9 @@
 <script src="js/bootstrap.js"></script>
 <script type="text/javascript">
   const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  var dt = new Date();
-  document.getElementById('getCurrentYear').innerHTML = dt.getFullYear();
-  var date = dt.getDate() + "/" + dt.getMonth() + "/" + dt.getFullYear() + " " + weekdays[dt.getDay()];
+   dt = new Date();
+  document.getElementById('getCurrentYear').innerHTML = dt.getFullYear().toString();
+   date = dt.getDate() + "/" + dt.getMonth() + "/" + dt.getFullYear() + " " + weekdays[dt.getDay()];
   document.getElementById('getCurrentDate').innerHTML = date;
   document.getElementById('commentDat').innerHTML = date;
 </script>
