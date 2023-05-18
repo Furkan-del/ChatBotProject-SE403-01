@@ -28,11 +28,13 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Contact> contactList;
 
+    @OneToMany(mappedBy = "users")
+    private List<Comment>comments;
+
     public User(Long id) {
         this.id = id;
     }
-
-  /*  @OneToMany(mappedBy = "user")
-    private List<News> newsList;
-*/
+/*
+    @OneToMany(mappedBy = "user")
+    private List<News> newsList;*/
 }
