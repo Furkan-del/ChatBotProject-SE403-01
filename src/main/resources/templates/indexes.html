@@ -457,7 +457,7 @@
     const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     let dt = new Date();
     document.getElementById('getCurrentYear').innerHTML = dt.getFullYear().toString();
-    document.getElementById('getCurrentDate').innerHTML = dt.getDate() + "/" + dt.getMonth() + "/" + dt.getFullYear() + " " + weekdays[dt.getDay()];
+    document.getElementById('getCurrentDate').innerHTML = dt.getDate() + "/" + dt.getMonth().toString() + "/" + dt.getFullYear() + " " + weekdays[dt.getDay()];
 </script>
 
 </body>
