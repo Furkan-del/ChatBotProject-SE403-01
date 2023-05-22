@@ -1,9 +1,8 @@
 package com.example.chatbot.controller;
 
-import com.example.chatbot.business.abstracts.NewsService;
 import com.example.chatbot.business.concrete.ContactServiceImpl;
 import com.example.chatbot.business.concrete.NewsServiceImpl;
-import com.example.chatbot.entity.Contact;
+
 import com.example.chatbot.entity.News;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -32,6 +30,7 @@ public class NewsController {
     public String getAllNew(Model model) {
         List<News> newsList = newsService.getAllNews();
         model.addAttribute("newImageList", newsList);
+        model.addAttribute("responseData",ChatGptController.answer);
 
         return "indexes";
     }
