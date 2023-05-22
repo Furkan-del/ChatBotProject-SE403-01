@@ -7,6 +7,7 @@ import com.example.chatbot.business.concrete.UserServiceImpl;
 import com.example.chatbot.entity.Comment;
 import com.example.chatbot.entity.News;
 import com.example.chatbot.entity.User;
+import org.hibernate.validator.internal.constraintvalidators.bv.AssertTrueValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,6 @@ public class ChatGptTest {
     private NewsServiceImpl newsService;
     @Autowired
     private UserServiceImpl userServiceImpl;
-
     @Test
     public void testMyChatGptMethod() {
 
@@ -40,6 +40,7 @@ public class ChatGptTest {
         assert id==3;
 
     }
+
 
     @Test
     public void userCheckNullTest(){
