@@ -3,23 +3,26 @@ package com.example.chatbot.controller;
 import com.example.chatbot.chatGptApi.ChatGptRequest;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Data;
 import org.springframework.http.*;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 
 @Controller
+@Data
 public class ChatGptController {
     private final String API_KEY = "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";
     private final String API_URL = "https://api.openai.com/v1/completions";
+    public static String answer;
 
 
 
     @PostMapping("/mainPage")
-    public String generateText(Model model, @RequestParam("prompt") String prompt) {
+    public String generateText( @RequestParam("prompt") String prompt) {
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
         HttpHeaders headers = new HttpHeaders();
@@ -32,8 +35,9 @@ public class ChatGptController {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             JsonNode jsonNode = objectMapper.readTree(responseData);
-            String responseAnswer = jsonNode.get("choices").get(0).get("text").asText();
-            model.addAttribute("responseData", responseAnswer);
+            answer = jsonNode.get("choices").get(0).get("text").asText();
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
