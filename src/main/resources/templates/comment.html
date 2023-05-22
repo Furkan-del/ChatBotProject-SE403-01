@@ -410,11 +410,11 @@
 
   </div>
 
-  <div class="col-md-4 portfolio-item" >
+  <div class="col-md-4 portfolio-item"  >
     <a href="#project-link"><img class="img-responsive" th:src="'data:images/png;base64,' + ${newsCommentForId.photo}"></a>
     <h3><a th:text="${newsCommentForId.newsHeader}">ChatGPT started a new kind of AI race and made text boxes cool again</a></h3>
     <p th:text="${newsCommentForId.newsContent}">Who would have thought that typing into a chat window, on your computer, would be 2023’s hottest innovation?</p>
-    <div id="positivityDiv" th:style="'border: 3px solid; width: 25.5%; border-color: ' + (${positivityPercentage.intValue()} < 50 ? 'red' : 'green')">
+    <div id="positivityDiv" th:style="'border: 3px solid; border-radius:5px; width: 25.5%; border-color: ' + (${positivityPercentage.intValue()} < 50 ? 'red' : 'green')">
       <label>Positivity: <span th:text="${positivityPercentage}"></span>%</label>
     </div>
 
@@ -437,14 +437,14 @@
             </div>
             <div style="display: flex;" >
               <p  style="margin-right: 5px;">
-                By <a th:text="${session.username}" class="url fn" href="#">Çağıl Erser</a>
+                By <a th:text="${comment.users.userName}" class="url fn" href="#">Çağıl Erser</a>
               </p>
               <p th:text="${comment.dates}">
               </p>
 
 
             </div>
-            <a class="button-comment"  th:href="@{http://localhost:8080/mainPage/news/{newsId}/delete/{commentId} (newsId=${newsCommentForId.getId()},commentId=${comment.getId()})}">Delete</a>
+            <a th:if="${comment.users.getUserName()}==${session.username}" class="button-comment"  th:href="@{http://localhost:8080/mainPage/news/{newsId}/delete/{commentId} (newsId=${newsCommentForId.getId()},commentId=${comment.getId()})}">Delete</a>
           <hr>
           </div>
         </div>

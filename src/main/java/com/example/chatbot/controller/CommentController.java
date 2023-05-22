@@ -3,8 +3,10 @@ package com.example.chatbot.controller;
 import com.example.chatbot.business.concrete.ChatGptServiceImpl;
 import com.example.chatbot.business.concrete.CommentServiceImpl;
 import com.example.chatbot.business.concrete.NewsServiceImpl;
+import com.example.chatbot.business.concrete.UserServiceImpl;
 import com.example.chatbot.entity.Comment;
 import com.example.chatbot.entity.News;
+import com.example.chatbot.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.jetbrains.annotations.NotNull;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -27,6 +30,7 @@ public class CommentController {
     private final CommentServiceImpl commentService;
     private final ChatGptServiceImpl chatGptService;
     private final NewsServiceImpl newsService;
+    private final UserServiceImpl userService;
 
     @GetMapping("mainPage/comments")
     public String getAllComments() {
@@ -35,7 +39,7 @@ public class CommentController {
     }
 
     @PostMapping("mainPage/news/{id}/postComment")
-    public String postComment(@RequestParam("comment") String comments, @PathVariable("id") Long id) {
+    public String postComment(@RequestParam("comment") String comments, @PathVariable("id") Long id, HttpSession httpSession) {
         News news = newsService.getNewsById(id);
         if (news != null) {
             Comment comment1 = new Comment();
@@ -45,13 +49,15 @@ public class CommentController {
             comment1.setDates(df.format(currentDate));
             String answer = chatGptService.generateText(comments);
             comment1.setCommentType(answer);
+            User user = userService.findByUsername(RegistrationController.nameOfUser);
+            comment1.setUsers(user);
             comment1.setNews(news);
             commentService.add(comment1);
 
         }
         return "redirect:/mainPage/news/{id}/comments";
     }
-    
+
     @GetMapping("mainPage/news/{newsId}/delete/{commentId}")
     public String delete(@PathVariable(name = "newsId") Long newsId, @PathVariable("commentId") Long commentId) {
         Comment comment = commentService.getCommentById(commentId);
@@ -64,7 +70,7 @@ public class CommentController {
     public String getShowCommentById(@PathVariable("id") Long id, @NotNull Model model) {
         model.addAttribute("newsCommentForId", newsService.getNewsById(id));
         model.addAttribute("commentsAll", newsService.getNewsById(id).getCommentList());
-        model.addAttribute("positivityPercentage",Math.round(commentService.calculateRate(id) * 10) / 10.0);
+        model.addAttribute("positivityPercentage", Math.round(commentService.calculateRate(id) * 10) / 10.0);
         return "comment";
     }
 

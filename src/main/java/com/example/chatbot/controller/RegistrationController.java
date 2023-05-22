@@ -19,6 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class RegistrationController {
+    public static String nameOfUser;
     private final UserServiceImpl userService;
 
     @GetMapping("/")
@@ -29,8 +30,11 @@ public class RegistrationController {
     @PostMapping("/")
     public String processLogin(@RequestParam(value = "userName", required = false) String username, @RequestParam(value = "password", required = false) String password, HttpSession httpSession) {
         User user = new User();
+        nameOfUser=username;
         user.setUserName(username);
-        user.setPassword(password);/*
+        user.setPassword(password);
+        httpSession.setAttribute("commentsForUser",user.getComments());
+        /*
         StringName.valUserName = username;*/
 
         if (user.getUserName().equals("admin") && user.getPassword().equals("12345")) {

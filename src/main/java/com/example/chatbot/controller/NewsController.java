@@ -23,13 +23,11 @@ import java.util.List;
 public class NewsController {
     private final NewsServiceImpl newsService;
     private final ContactServiceImpl contactService;
-
     @PostMapping("/addNew")
     public String addNew(@RequestParam(value = "file", required = false) MultipartFile multipartFile, @RequestParam(value = "newsContent", required = false) String newsName, @RequestParam(value = "newsHeader", required = false) String newsHeader) {
         newsService.saveNew(multipartFile, newsName, newsHeader);
         return "redirect:/mainPage/news";
     }
-
     @GetMapping("/mainPage/news")
     public String getAllNew(Model model) {
         List<News> newsList = newsService.getAllNews();
@@ -37,17 +35,15 @@ public class NewsController {
 
         return "indexes";
     }
-
-
     @GetMapping("/admin")
     public String showAddNew(Model model) {
         model.addAttribute("allContacts", contactService.getAll());
         return "admin";
     }
-
     @GetMapping("/admin/contacts/{id}")
     public String deleteMessage(@PathVariable Long id){
         contactService.deleteById(id);
         return "redirect:/admin";
     }
+
 }

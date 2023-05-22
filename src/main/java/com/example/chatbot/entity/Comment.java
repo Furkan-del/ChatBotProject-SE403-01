@@ -24,11 +24,10 @@ public class Comment {
     private String commentType;
     @Column(name = "date")
     private String dates;
-    /*
-        @ManyToOne
-        @JoinColumn(name = "user_id")
-        private User user;
-    */
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User users;
     @ManyToOne
     @JoinColumn(name = "news_id")
     private News news;
