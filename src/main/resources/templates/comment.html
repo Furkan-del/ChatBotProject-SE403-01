@@ -499,7 +499,7 @@
   const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
    dt = new Date();
   document.getElementById('getCurrentYear').innerHTML = dt.getFullYear().toString();
-   date = dt.getDate() + "/" + dt.getMonth() + "/" + dt.getFullYear() + " " + weekdays[dt.getDay()];
+   date = dt.getDate() + "/" + (dt.getMonth()+1) + "/" + dt.getFullYear() + " " + weekdays[dt.getDay()];
   document.getElementById('getCurrentDate').innerHTML = date;
   document.getElementById('commentDat').innerHTML = date;
 </script>
