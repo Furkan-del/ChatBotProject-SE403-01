@@ -1,5 +1,6 @@
 package com.example.chatbot.controller;
 
+import com.example.chatbot.business.abstracts.UserService;
 import com.example.chatbot.business.concrete.CustomUserDetailsService;
 import com.example.chatbot.business.concrete.NewsServiceImpl;
 import com.example.chatbot.business.concrete.UserServiceImpl;
@@ -30,7 +31,7 @@ import java.util.List;
 @Data
 public class RegistrationController {
     public static String nameOfUser;
-    private final UserServiceImpl userService;
+    private final UserService userService;
     private final CustomUserDetailsService customUserDetailsService;
 
     @GetMapping("/")

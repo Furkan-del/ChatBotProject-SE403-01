@@ -1,5 +1,7 @@
 package com.example.chatbot.controller;
 
+import com.example.chatbot.business.abstracts.ContactService;
+import com.example.chatbot.business.abstracts.UserService;
 import com.example.chatbot.business.concrete.ContactServiceImpl;
 import com.example.chatbot.business.concrete.UserServiceImpl;
 import com.example.chatbot.entity.Contact;
@@ -19,8 +21,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Data
 public class ContactController {
-    private final ContactServiceImpl contactService;
-    private final UserServiceImpl userService;
+    private final ContactService contactService;
+    private final UserService userService;
 
 
     @PostMapping("/addContact")
