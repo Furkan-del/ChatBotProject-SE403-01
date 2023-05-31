@@ -1,5 +1,9 @@
 package com.example.chatbot.controller;
 
+import com.example.chatbot.business.abstracts.ChatGptService;
+import com.example.chatbot.business.abstracts.CommentService;
+import com.example.chatbot.business.abstracts.NewsService;
+import com.example.chatbot.business.abstracts.UserService;
 import com.example.chatbot.business.concrete.ChatGptServiceImpl;
 import com.example.chatbot.business.concrete.CommentServiceImpl;
 import com.example.chatbot.business.concrete.NewsServiceImpl;
@@ -27,10 +31,10 @@ import java.util.Date;
 public class CommentController {
 
     static double rate;
-    private final CommentServiceImpl commentService;
-    private final ChatGptServiceImpl chatGptService;
-    private final NewsServiceImpl newsService;
-    private final UserServiceImpl userService;
+    private final CommentService commentService;
+    private final ChatGptService chatGptService;
+    private final NewsService newsService;
+    private final UserService userService;
 
     @GetMapping("mainPage/comments")
     public String getAllComments() {

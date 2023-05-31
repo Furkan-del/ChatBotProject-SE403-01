@@ -1,5 +1,7 @@
 package com.example.chatbot.controller;
 
+import com.example.chatbot.business.abstracts.ContactService;
+import com.example.chatbot.business.abstracts.NewsService;
 import com.example.chatbot.business.concrete.ContactServiceImpl;
 import com.example.chatbot.business.concrete.NewsServiceImpl;
 
@@ -19,8 +21,8 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 public class NewsController {
-    private final NewsServiceImpl newsService;
-    private final ContactServiceImpl contactService;
+    private final NewsService newsService;
+    private final ContactService contactService;
     @PostMapping("/addNew")
     public String addNew(@RequestParam(value = "file", required = false) MultipartFile multipartFile, @RequestParam(value = "newsContent", required = false) String newsName, @RequestParam(value = "newsHeader", required = false) String newsHeader) {
         newsService.saveNew(multipartFile, newsName, newsHeader);
