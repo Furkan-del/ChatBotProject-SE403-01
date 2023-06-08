@@ -375,17 +375,11 @@
                 <label><p th:text="${session.username}">Username</p></label>
                 <label class="btn" for="modal-2"> <a>Contact Admins</a></label>
                 <label class="btn" for="modal-1"><a>Comment Inspector</a></label>
-                <label class="btn" for="modal-logout" style="position: absolute; right: 200px;"><a>Log Out</a></label>
+                <label  style="position:absolute; right:170px" class="btn" for="modal-3"><a>Log Out</a></label>
+
                 <label style="font-size:18px; position:absolute; right:0"><a id="getCurrentDate"></a></label>
+
             </ul>
-            <div id="modal-logout" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <form action="/logout" method="get">
-                        <button type="submit">Logout</button>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 </nav>
@@ -460,6 +454,23 @@
         </div>
     </div>
 
+    <input class="modal-state" id="modal-3" type="checkbox"/>
+    <div  class="modal">
+        <label class="modal__bg" for="modal-3"></label>
+        <div style="height:150px" class="modal__inner">
+            <label class="modal__close" for="modal-3"></label>
+            <form action="/logout" method="get">
+                <h2>Are you sure ?</h2>
+
+                <button class="button" type="submit">Yes</button>
+
+
+            </form>
+        </div>
+    </div>
+
+
+
 </div>
 
 <script>
@@ -472,3 +483,4 @@
 </body>
 
 </html>
+
